@@ -9,12 +9,12 @@
     { "name": "meses", "price": 12 },
     { "name": "kacang", "price": 10 },
     { "name": "oreo", "price": 15 },
-    { "name": "red velvet", "price": 20 }
+    { "name": "red_velvet", "price": 20 }
   ],
   "ICING_VARIANT": [
-    { "name": "saus coklat", "price": 12 },
-    { "name": "saus karamel", "price": 15 },
-    { "name": "cream cheese", "price": 20 },
+    { "name": "saus_coklat", "price": 12 },
+    { "name": "saus_karamel", "price": 15 },
+    { "name": "cream_cheese", "price": 20 },
     { "name": "pistachio", "price": 20 }
   ],
   "DOUGH": {
