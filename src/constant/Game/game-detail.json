@@ -1,0 +1,41 @@
+{
+  "difficulty": {
+    "easy": {
+      "qty": [1, 2],
+      "allowedOrders": [
+        { "glaze": false, "topping": false, "icing": false },
+        { "glaze": true, "topping": false, "icing": false }
+      ],
+      "maxVariant": 2
+    },
+    "medium": {
+      "qty": [2, 2, 3, 4],
+      "allowedOrders": [
+        { "glaze": false, "topping": false, "icing": false },
+        { "glaze": true, "topping": false, "icing": false },
+        { "glaze": true, "topping": true, "icing": false },
+        { "glaze": true, "topping": false, "icing": true }
+      ],
+      "maxVariant": 3
+    },
+    "hard": {
+      "qty": [1, 2, 3, 4, 5, 6],
+      "allowedOrders": [
+        { "glaze": false, "topping": false, "icing": false },
+        { "glaze": true, "topping": false, "icing": false },
+        { "glaze": true, "topping": true, "icing": false },
+        { "glaze": true, "topping": false, "icing": true },
+        { "glaze": true, "icing": true, "topping": true }
+      ],
+      "maxVariant": 4
+    }
+  },
+  "fryingArea": {
+    "maxDoughSlots": 8,
+    "maxStoveSlots": 8,
+    "maxDrainingSlots": 12
+  },
+  "toppingArea": {
+    "maxStockSlot": 6
+  }
+}

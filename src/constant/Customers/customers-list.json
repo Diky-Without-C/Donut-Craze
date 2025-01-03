@@ -1,0 +1,90 @@
+{
+  "customersList": [
+    {
+      "name": "Andi",
+      "type": "excited",
+      "favorite": [
+        { "glaze": "vanila", "topping": "oreo", "icing": "cream cheese" },
+        { "glaze": "vanila", "topping": "kacang", "icing": "pistachio" }
+      ]
+    },
+    {
+      "name": "Tania",
+      "type": "tegas",
+      "favorite": [
+        { "glaze": "vanila" },
+        { "glaze": "vanila" },
+        { "glaze": "vanila", "icing": "saus karamel" },
+        { "glaze": "vanila", "icing": "saus karamel" }
+      ]
+    },
+    {
+      "name": "Amel",
+      "type": "ramah",
+      "favorite": [
+        { "glaze": "coklat", "icing": "saus coklat" },
+        { "glaze": "coklat", "topping": "red velvet" },
+        { "glaze": "vanila", "topping": "kacang", "icing": "cream cheese" }
+      ]
+    },
+    {
+      "name": "Doni",
+      "type": "excited",
+      "favorite": [
+        {},
+        {},
+        { "glaze": "vanila" },
+        { "glaze": "vanila" },
+        { "glaze": "coklat", "topping": "pistachio" }
+      ]
+    },
+
+    {
+      "name": "Agus",
+      "type": "terburu-buru",
+      "favorite": [{}, { "glaze": "coklat" }]
+    },
+    {
+      "name": "Dina",
+      "type": "pemalu",
+      "favorite": [
+        { "glaze": "strawberi", "topping": "meses" },
+        { "glaze": "strawberi", "topping": "meses" }
+      ]
+    },
+    {
+      "name": "Gea",
+      "type": "cerewet",
+      "favorite": [{ "glaze": "coklat", "icing": "saus karamel" }]
+    },
+    {
+      "name": "Sania",
+      "type": "sedih",
+      "favorite": [
+        { "glaze": "vanila", "icing": "saus karamel" },
+        { "glaze": "vanila", "icing": "saus karamel" },
+        { "glaze": "strawberi", "topping": "red velvet" }
+      ]
+    },
+    {
+      "name": "Damar",
+      "type": "tegas",
+      "favorite": [
+        { "glaze": "coklat", "topping": "kacang" },
+        { "glaze": "coklat", "topping": "kacang" },
+        { "glaze": "strawberi", "icing": "cream cheese" },
+        { "glaze": "strawberi", "icing": "cream cheese" },
+        { "glaze": "vanila", "topping": "oreo", "icing": "saus coklat" },
+        { "glaze": "vanila", "topping": "oreo", "icing": "saus coklat" }
+      ]
+    },
+    {
+      "name": "Jihan",
+      "type": "pemalu",
+      "favorite": [
+        { "glaze": "vanila", "topping": "meses" },
+        { "glaze": "vanila", "topping": "meses" }
+      ]
+    }
+  ]
+}

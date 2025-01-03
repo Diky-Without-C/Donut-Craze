@@ -1,0 +1,82 @@
+{
+  "customerTypes": [
+    {
+      "type": "pemalu",
+      "greetings": ["Hai...", "Umm... maaf, aku ingin pesan."],
+      "prefixes": ["Aku mau", "Kalau boleh, aku pesan", "Aku pikir aku mau"]
+    },
+    {
+      "type": "humoris",
+      "greetings": [
+        "Hai! Ini tempatnya donat terbaik, kan?",
+        "Halo! Jangan bikin aku kecewa, ya."
+      ],
+      "prefixes": [
+        "Berikan aku",
+        "Siapkan untukku",
+        "Aku mau pesan",
+        "kalau begitu berikan aku"
+      ]
+    },
+    {
+      "type": "tegas",
+      "greetings": ["Hai!", "Halo!", "Selamat Pagi!"],
+      "prefixes": ["Aku pesan", "Siapkan aku", "Aku mau pesan"]
+    },
+    {
+      "type": "cerewet",
+      "greetings": [
+        "Halo! Wah, aku nggak sabar buat mencoba donat di sini.",
+        "Hai! Aku denger-denger donat di sini enak banget."
+      ],
+      "prefixes": [
+        "Aku mau pesan",
+        "Tolong siapkan aku",
+        "Kupikir aku ingin memesan"
+      ]
+    },
+    {
+      "type": "ramah",
+      "greetings": [
+        "Halo, apa kabar? Semoga harimu menyenangkan!",
+        "Hai! Aku suka tempat ini, kalian selalu ramah.",
+        "Hai! hari yang indah bukan!",
+        "Hai! hari yang cerah bukan!"
+      ],
+      "prefixes": [
+        "Aku mau pesan",
+        "Boleh aku pesan",
+        "Kupikir aku ingin pesan"
+      ]
+    },
+    {
+      "type": "excited",
+      "greetings": [
+        "Haiii! Aku nggak sabar buat coba donat kalian lagi!",
+        "Halo! Ayo cepat, aku udah lapar banget nih."
+      ],
+      "prefixes": [
+        "Aku mau pesan",
+        "Berikan aku",
+        "Tolong siapkan untukku",
+        "Aku sangat ingin"
+      ]
+    },
+    {
+      "type": "sedih",
+      "greetings": [
+        "Hai... Aku lagi nggak mood, tapi aku butuh sesuatu yang enak.",
+        "Halo... mungkin donat bisa bikin hariku lebih baik."
+      ],
+      "prefixes": ["Aku pesan", "Aku butuh", "Berikan aku", "Aku mau coba"]
+    },
+    {
+      "type": "terburu-buru",
+      "greetings": [
+        "Cepat! Aku nggak punya banyak waktu.",
+        "Halo, bisa cepat nggak? Aku sangat terburu-buru."
+      ],
+      "prefixes": ["Aku pesan", "Aku mau", "Siapkan aku", "Cepat berikan aku"]
+    }
+  ]
+}

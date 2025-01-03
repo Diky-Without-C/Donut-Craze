@@ -1,0 +1,56 @@
+.rolling {
+  animation: rolling 2s ease-in-out;
+  position: absolute;
+}
+
+@keyframes rolling {
+  0% {
+    transform: translateX(-2rem) translateY(15rem) rotate(90deg);
+  }
+  20% {
+    transform: translateX(-10rem) translateY(15rem) rotate(90deg);
+  }
+  50% {
+    transform: translateX(8rem) translateY(15rem) rotate(90deg);
+  }
+  70% {
+    transform: translateX(-14rem) translateY(15rem) rotate(90deg);
+  }
+  100% {
+    transform: translateX(0rem) translateY(0rem) rotate(0deg);
+  }
+}
+
+.conveyor-belt {
+  animation: slide 2s linear;
+}
+
+@keyframes slide {
+  0% {
+    position: absolute;
+    left: 0;
+  }
+  100% {
+    position: relative;
+    transform: translateX(2200%);
+  }
+}
+
+.frying {
+  animation: fry 2s ease-in-out infinite;
+}
+
+@keyframes fry {
+  0% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05) translateY(-4px);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}

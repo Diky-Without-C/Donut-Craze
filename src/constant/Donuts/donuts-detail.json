@@ -1,0 +1,33 @@
+{
+  "BASE_PRICE": 20,
+  "GLAZE_VARIANT": [
+    { "name": "coklat", "price": 10 },
+    { "name": "vanila", "price": 10 },
+    { "name": "strawberi", "price": 10 }
+  ],
+  "TOPPING_VARIANT": [
+    { "name": "meses", "price": 12 },
+    { "name": "kacang", "price": 10 },
+    { "name": "oreo", "price": 15 },
+    { "name": "red velvet", "price": 20 }
+  ],
+  "ICING_VARIANT": [
+    { "name": "saus coklat", "price": 12 },
+    { "name": "saus karamel", "price": 15 },
+    { "name": "cream cheese", "price": 20 },
+    { "name": "pistachio", "price": 20 }
+  ],
+  "DOUGH": {
+    "color_variant": {
+      "base": "#ffc798",
+      "cooked": "#dc9a60",
+      "over_cooked": "#864d22",
+      "burned": "#3d2a23"
+    },
+    "time": {
+      "cooked": 15,
+      "over_cooked": 25,
+      "burned": 40
+    }
+  }
+}
