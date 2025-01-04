@@ -1,21 +1,65 @@
 {
   "BASE_PRICE": 20,
   "GLAZE_VARIANT": [
-    { "name": "coklat", "price": 10 },
-    { "name": "vanila", "price": 10 },
-    { "name": "strawberi", "price": 10 }
+    {
+      "name": "coklat",
+      "id": "chocolate",
+      "price": 10
+    },
+    {
+      "name": "vanila",
+      "id": "vanilla",
+      "price": 10
+    },
+    {
+      "name": "strawberi",
+      "id": "strawberry",
+      "price": 10
+    }
   ],
   "TOPPING_VARIANT": [
-    { "name": "meses", "price": 12 },
-    { "name": "kacang", "price": 10 },
-    { "name": "oreo", "price": 15 },
-    { "name": "red velvet", "price": 20 }
+    {
+      "name": "meses",
+      "id": "springkle",
+      "price": 12
+    },
+    {
+      "name": "kacang",
+      "id": "peanut",
+      "price": 10
+    },
+    {
+      "name": "oreo",
+      "id": "orep",
+      "price": 15
+    },
+    {
+      "name": "red velvet",
+      "id": "redVelvet",
+      "price": 20
+    }
   ],
   "ICING_VARIANT": [
-    { "name": "saus coklat", "price": 12 },
-    { "name": "saus karamel", "price": 15 },
-    { "name": "cream cheese", "price": 20 },
-    { "name": "pistachio", "price": 20 }
+    {
+      "name": "saus coklat",
+      "id": "chocolateSauce",
+      "price": 12
+    },
+    {
+      "name": "saus karamel",
+      "id": "caramelSauce",
+      "price": 15
+    },
+    {
+      "name": "cream cheese",
+      "id": "creamCheese",
+      "price": 20
+    },
+    {
+      "name": "pistachio",
+      "id": "pistachio",
+      "price": 20
+    }
   ],
   "DOUGH": {
     "color_variant": {
