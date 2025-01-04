@@ -8,7 +8,7 @@ export default function getOrderDialog(self: Customer) {
   const totalOrders = self.orders.length;
 
   function buildOrderDescription(
-    order: any,
+    order: (typeof self.orders)[number],
     count: number | null = null,
     isHalf: boolean = false,
     current: number,
