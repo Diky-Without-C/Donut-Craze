@@ -4,10 +4,18 @@ import {
 } from "@constant/Donuts/donuts-detail.json";
 import { useSelectedTopping } from "@services/stores/toppingAreaStore";
 import Draggable from "@components/Draggable";
+import Overlay from "@components/Overlay";
+import {
+  tableImages,
+  icingImages,
+  toppingImages,
+} from "@assets/toppingArea/config";
 
 export default function ToppingTable() {
   return (
-    <div className="h-3/5 w-full bg-amber-300">
+    <div className="relative h-3/5 w-full bg-amber-300">
+      <Overlay src={tableImages.topping} className="h-full w-full" />
+
       <Icing />
       <Topping />
     </div>
@@ -16,15 +24,18 @@ export default function ToppingTable() {
 
 function Icing() {
   return (
-    <div className="flex h-1/2 w-full items-center justify-evenly">
+    <div className="flex h-1/2 w-full -translate-y-1/2 items-center justify-evenly">
       {ICING_VARIANT.map((icing, index) => {
         return (
           <Draggable
-            key={icing.name}
+            key={icing.id}
             id={`icing-${index}`}
-            className="flex h-3/6 w-1/12 items-center justify-center bg-rose-500 transition-all duration-500"
+            className="relative flex h-32 w-16 items-center justify-center transition-all duration-500"
           >
-            {icing.name}
+            <Overlay
+              src={icingImages[icing.id as keyof typeof icingImages]}
+              className="h-full w-full"
+            />
           </Draggable>
         );
       })}
@@ -44,13 +55,13 @@ function Topping() {
   };
 
   return (
-    <div className="flex h-1/2 w-full items-center justify-center gap-x-4">
+    <div className="flex h-1/2 w-full -translate-y-1/3 items-center justify-center">
       {TOPPING_VARIANT.map((topping, index) => {
         return (
           <div
-            key={index}
+            key={topping.id}
             onClick={() => setSelected(index)}
-            className="relative flex h-4/5 w-1/5 cursor-pointer items-center justify-center bg-rose-500"
+            className="relative flex h-40 w-28 cursor-pointer items-center justify-center"
           >
             {selectedToppings[index] && (
               <Draggable
@@ -58,7 +69,10 @@ function Topping() {
                 className="absolute -top-1/4 size-14 bg-blue-600"
               ></Draggable>
             )}
-            {topping.name}
+            <Overlay
+              src={toppingImages[topping.id as keyof typeof toppingImages]}
+              className="h-full w-full"
+            />
           </div>
         );
       })}

@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import useCustomersStore from "@services/stores/customersStore";
+import Overlay from "@components/Overlay";
+import { TicketImage } from "@assets/toppingArea/config";
 
 export default function Ticket() {
   const [isActive, setIsActive] = useState(false);
@@ -32,10 +34,12 @@ export default function Ticket() {
       onClick={() => setIsActive(true)}
       className={`${
         isActive
-          ? "absolute right-1/2 top-10 h-4/5 w-5/12 translate-x-1/2 rounded-md"
+          ? "absolute right-1/2 top-10 h-4/5 w-5/12 translate-x-1/2"
           : "relative h-5/6 w-4/5 cursor-pointer"
-      } z-10 bg-white shadow-lg`}
+      } z-10`}
     >
+      <Overlay src={TicketImage} className="h-full w-full"/>
+
       {isActive && (
         <main className="flex h-full w-full flex-col items-end">
           <section className="relative flex h-full w-full flex-col p-8 font-mono">
