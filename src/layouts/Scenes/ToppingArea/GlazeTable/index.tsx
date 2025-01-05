@@ -4,7 +4,7 @@ import { glazeImages } from "@assets/toppingArea/config";
 
 export default function GlazeTable() {
   return (
-    <div className="bg-table-primary border-table-secondary flex h-2/6 w-full items-center justify-evenly gap-2 border-4 border-b-0">
+    <div className="flex h-2/6 w-full items-center justify-evenly gap-2 border-4 border-b-0 border-table-border bg-table-primary">
       {GLAZE_VARIANT.map((glaze, index) => {
         return (
           <Droppable

@@ -12,7 +12,7 @@ export default function Counter() {
   const { dough } = useDoughStore();
 
   return (
-    <div className="bg-table-primary border-table-secondary relative flex h-1/4 w-10/12 justify-between rounded-t-md border-4 p-2">
+    <div className="relative flex h-1/4 w-10/12 justify-between rounded-t-md border-4 border-table-border bg-table-primary p-2">
       <div className="relative flex h-full w-32 cursor-pointer items-center justify-center p-3">
         <Overlay src={DoughContainer} className="h-full w-full" />
 

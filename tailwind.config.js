@@ -5,7 +5,8 @@ export default {
     extend: {
       colors: {
         "table-primary": "#fff2e0",
-        "table-secondary": "#e1caae",
+        "table-secondary": "#eed9d2",
+        "table-border": "#e1caae",
       },
     },
   },
