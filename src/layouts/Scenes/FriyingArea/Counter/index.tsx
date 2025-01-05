@@ -1,28 +1,42 @@
 import { useDoughStore } from "@services/stores/fryingAreaStore";
 import Draggable from "@components/Draggable";
 import Dough from "../Table/Dough";
+import {
+  DoughContainer,
+  MolderImage,
+  RollerImage,
+} from "@assets/FryingArea/config";
+import Overlay from "@components/Overlay";
 
 export default function Counter() {
   const { dough } = useDoughStore();
 
   return (
-    <div className="mb-4 flex h-1/4 w-9/12 rounded-lg bg-slate-400">
-      <div className="h-full w-2/4 p-4">
-        <div className="flex h-full w-full cursor-pointer items-center justify-center rounded border-[0.5rem] border-double border-white bg-orange-300">
+    <div className="bg-table-primary border-table-secondary relative flex h-1/4 w-10/12 justify-between rounded-t-md border-4 p-2">
+      <div className="relative flex h-full w-32 cursor-pointer items-center justify-center p-3">
+        <Overlay src={DoughContainer} className="h-full w-full" />
+
+        <div className="relative flex h-full w-full items-center justify-center pb-2">
           {!dough.isOnTable && <Dough />}
         </div>
       </div>
-      <div className="relative flex h-full w-1/4 items-center justify-center">
-        <Draggable
-          id="roller"
-          className={`${dough.isFlattened && "rolling"} relative z-10 flex h-6 w-4/6 cursor-pointer items-center rounded bg-orange-400 transition-all duration-500 before:absolute before:right-0 before:h-1/2 before:w-1/6 before:translate-x-full before:bg-orange-100 after:absolute after:left-0 after:h-1/2 after:w-1/6 after:-translate-x-full after:bg-orange-100`}
-        ></Draggable>
-      </div>
-      <div className="flex h-full w-1/4 items-center justify-center">
-        <Draggable
-          id="mold"
-          className="z-10 size-20 cursor-pointer rounded-full bg-red-500 transition-all duration-500"
-        ></Draggable>
+      <div className="flex h-full w-3/6 justify-around">
+        <div className="relative flex h-full w-1/4 items-center justify-center">
+          <Draggable
+            id="roller"
+            className={`${dough.isFlattened && "rolling"} relative z-10 flex h-10 w-28 shrink-0 cursor-pointer items-center`}
+          >
+            <Overlay src={RollerImage} />
+          </Draggable>
+        </div>
+        <div className="flex h-full w-1/4 items-center justify-center">
+          <Draggable
+            id="mold"
+            className="relative z-10 size-20 shrink-0 cursor-pointer rounded-full transition-all duration-500"
+          >
+            <Overlay src={MolderImage} className="h-full w-full" />
+          </Draggable>
+        </div>
       </div>
     </div>
   );

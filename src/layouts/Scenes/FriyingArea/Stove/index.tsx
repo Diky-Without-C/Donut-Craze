@@ -3,6 +3,8 @@ import { DOUGH } from "@constant/Donuts/donuts-detail.json";
 import { useStoveStore } from "@services/stores/fryingAreaStore";
 import Droppable from "@components/Droppable";
 import Donut from "@components/Donut";
+import { StoveImage } from "@assets/FryingArea/config";
+import Overlay from "@components/Overlay";
 
 export default function Stove() {
   const { stoveSlot } = useStoveStore();
@@ -59,27 +61,34 @@ export default function Stove() {
   }, [time]);
 
   return (
-    <Droppable id="stove" className="h-3/5 w-11/12 p-4">
-      <div className="flex h-3/4 w-full flex-wrap gap-y-2 rounded-lg border-[0.5rem] border-slate-400 bg-amber-400 p-5">
-        {stoveSlot.map((donut, index) => {
-          const isFrying = fryingStates[index];
+    <Droppable
+      id="stove"
+      className="relative flex h-3/5 w-11/12 justify-center"
+    >
+      <Overlay src={StoveImage} className="h-[90%] min-w-[104%]" />
 
-          return (
-            <div key={index} className="flex h-1/2 w-3/12">
-              {donut && (
-                <div
-                  className={`${isFrying && "frying"} flex h-full w-full justify-center`}
-                >
-                  <Donut
-                    onDraggingStart={() => updateFryingState(index, false)}
-                    onDraggingEnd={() => updateFryingState(index, true)}
-                    donut={donut}
-                  />
-                </div>
-              )}
-            </div>
-          );
-        })}
+      <div className="relative flex h-3/4 w-full justify-center p-5">
+        <div className="relative top-5 flex h-full w-full flex-wrap gap-y-2">
+          {stoveSlot.map((donut, index) => {
+            const isFrying = fryingStates[index];
+
+            return (
+              <div key={index} className="flex h-1/2 w-3/12">
+                {donut && (
+                  <div
+                    className={`${isFrying && "frying"} flex h-full w-full justify-center`}
+                  >
+                    <Donut
+                      onDraggingStart={() => updateFryingState(index, false)}
+                      onDraggingEnd={() => updateFryingState(index, true)}
+                      donut={donut}
+                    />
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
       </div>
     </Droppable>
   );

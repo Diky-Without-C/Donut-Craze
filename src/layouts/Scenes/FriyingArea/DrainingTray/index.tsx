@@ -1,6 +1,8 @@
 import { useDrainingStore } from "@services/stores/fryingAreaStore";
 import Droppable from "@components/Droppable";
 import Donut from "@components/Donut";
+import Overlay from "@components/Overlay";
+import { DrainingTrayImage } from "@assets/FryingArea/config";
 
 export default function DrainingTray() {
   const { drainingTray } = useDrainingStore();
@@ -8,9 +10,11 @@ export default function DrainingTray() {
   return (
     <Droppable
       id="draining-tray"
-      className="flex h-2/5 w-11/12 items-center justify-center px-2 py-2"
+      className="relative flex h-2/5 w-11/12 items-center justify-center"
     >
-      <div className="flex h-full w-full flex-row-reverse flex-wrap rounded-lg border-[0.5rem] border-stone-400 bg-stone-600 px-2">
+      <Overlay src={DrainingTrayImage} className="h-full min-w-[106%]" />
+
+      <div className="flex h-full w-full flex-row-reverse flex-wrap rounded-lg px-2 py-2">
         {drainingTray.map((donut, index) => {
           return (
             <div

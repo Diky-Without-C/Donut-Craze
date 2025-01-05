@@ -37,7 +37,9 @@ export default function Dough() {
       className={`${
         isFlattened
           ? "absolute h-[calc(100%-2rem)] w-[calc(100%-2rem)] rounded-3xl transition-all duration-[1200ms]"
-          : "size-24 rounded-full"
+          : isOnTable
+            ? "size-28 rounded-full"
+            : "h-full w-full rounded-[5rem]"
       } ${areAllMolded && "transition-colors duration-1000"} p-4`}
       style={{
         backgroundColor: areAllMolded ? "transparent" : color_variant.base,
