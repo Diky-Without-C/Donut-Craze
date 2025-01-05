@@ -1,6 +1,6 @@
 import { glazeImages } from "./glaze/config";
 import { icingImages } from "./icings/config";
-import { toppingImages } from "./toppings/config";
+import { toppingImages, toppingCrumpImages } from "./toppings/config";
 import { tableImages } from "./tables/config";
 
 import TicketImage from "./Ticket.svg";
@@ -12,5 +12,6 @@ export {
   glazeImages,
   icingImages,
   toppingImages,
+  toppingCrumpImages,
   tableImages,
 };
