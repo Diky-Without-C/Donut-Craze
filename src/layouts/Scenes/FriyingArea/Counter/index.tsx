@@ -32,7 +32,7 @@ export default function Counter() {
         <div className="flex h-full w-1/4 items-center justify-center">
           <Draggable
             id="mold"
-            className="relative z-10 size-20 shrink-0 cursor-pointer rounded-full transition-all duration-500"
+            className="relative z-10 size-24 shrink-0 cursor-pointer rounded-full transition-all duration-500"
           >
             <Overlay src={MolderImage} className="h-full w-full" />
           </Draggable>
