@@ -28,7 +28,7 @@ export default function Draggable({
 
     return {
       transform: `translateX(${transform.x}px) translateY(${transform.y}px) scale(1.05)`,
-      zIndex: 99,
+      zIndex: 9999999,
       transition: "none",
       cursor: "grab",
     };

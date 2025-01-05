@@ -38,7 +38,7 @@ export default function Ticket() {
           : "relative h-5/6 w-4/5 cursor-pointer"
       } z-10`}
     >
-      <Overlay src={TicketImage} className="h-full w-full"/>
+      <Overlay src={TicketImage} className="h-full w-full" />
 
       {isActive && (
         <main className="flex h-full w-full flex-col items-end">

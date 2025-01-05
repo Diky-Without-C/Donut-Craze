@@ -10,14 +10,18 @@ export default function Shelf() {
   return (
     <Droppable
       id="shelf"
-      className="relative flex h-3/5 w-2/12 justify-center px-4 py-6"
+      className="bg-table-primary border-table-secondary relative h-3/5 w-2/12 rounded-bl-md border-b-4 border-l-4 pr-1"
     >
-      <Overlay
-        src={tableImages.shelf}
-        className="top-0 z-0 h-full min-w-[107%] flex-shrink-0"
-      />
+      <div className="absolute bottom-0 right-0 h-20 w-[calc(100%+0.25rem)] translate-y-full overflow-x-hidden">
+        <div className="bg-table-secondary h-full w-full translate-x-2 skew-x-12"></div>
+      </div>
 
-      <div className="z-20 flex h-full w-full flex-row-reverse flex-wrap-reverse">
+      <div className="flex h-full w-full flex-row-reverse flex-wrap-reverse items-center justify-center px-4 py-6">
+        <Overlay
+          src={tableImages.shelf}
+          className="h-full min-w-[108%] shrink-0"
+        />
+
         {stock.map((donut, index) => {
           return (
             <div

@@ -42,7 +42,7 @@ export default function Donut({
       id={donut.id}
       onDraggingStart={onDraggingStart}
       onDraggingEnd={onDraggingEnd}
-      className="flex items-center justify-center transition-all duration-500"
+      className="flex items-center justify-center transition-all duration-500 will-change-transform"
     >
       <svg
         width={size}

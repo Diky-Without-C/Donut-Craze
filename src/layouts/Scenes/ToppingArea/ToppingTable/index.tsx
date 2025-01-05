@@ -4,38 +4,33 @@ import {
 } from "@constant/Donuts/donuts-detail.json";
 import { useSelectedTopping } from "@services/stores/toppingAreaStore";
 import Draggable from "@components/Draggable";
+import { icingImages, toppingImages } from "@assets/toppingArea/config";
 import Overlay from "@components/Overlay";
-import {
-  tableImages,
-  icingImages,
-  toppingImages,
-} from "@assets/toppingArea/config";
 
 export default function ToppingTable() {
   return (
-    <div className="relative h-3/5 w-full bg-amber-300">
-      <Overlay src={tableImages.topping} className="h-full w-full" />
+    <div className="flex h-4/6 w-full">
+      <div className="bg-table-primary border-table-secondary relative flex h-4/5 w-full flex-col gap-x-2 gap-y-1 rounded-md rounded-l-none rounded-br-none border-4 border-l-0 p-2">
+        <div className="bg-table-secondary absolute bottom-0 left-0 h-20 w-[calc(100%+0.25rem)] translate-y-full overflow-x-hidden"></div>
 
-      <Icing />
-      <Topping />
+        <Icing />
+        <Topping />
+      </div>
     </div>
   );
 }
 
 function Icing() {
   return (
-    <div className="flex h-1/2 w-full -translate-y-1/2 items-center justify-evenly">
+    <div className="relative -top-20 flex h-1/2 w-full items-center justify-around">
       {ICING_VARIANT.map((icing, index) => {
         return (
           <Draggable
             key={icing.id}
             id={`icing-${index}`}
-            className="relative flex h-32 w-16 items-center justify-center transition-all duration-500"
+            className="flex h-32 w-16 items-center justify-center transition-all duration-500 will-change-transform"
           >
-            <Overlay
-              src={icingImages[icing.id as keyof typeof icingImages]}
-              className="h-full w-full"
-            />
+            <Overlay src={icingImages[icing.id as keyof typeof icingImages]} />
           </Draggable>
         );
       })}
@@ -55,24 +50,24 @@ function Topping() {
   };
 
   return (
-    <div className="flex h-1/2 w-full -translate-y-1/3 items-center justify-center">
+    <div className="flex h-1/2 w-full items-center justify-around">
       {TOPPING_VARIANT.map((topping, index) => {
         return (
           <div
             key={topping.id}
             onClick={() => setSelected(index)}
-            className="relative flex h-40 w-28 cursor-pointer items-center justify-center"
+            className="relative -top-12 flex h-48 w-24 cursor-pointer items-center justify-center will-change-transform"
           >
+            <Overlay
+              src={toppingImages[topping.id as keyof typeof toppingImages]}
+            />
+
             {selectedToppings[index] && (
               <Draggable
                 id={`topping-${index}`}
                 className="absolute -top-1/4 size-14 bg-blue-600"
               ></Draggable>
             )}
-            <Overlay
-              src={toppingImages[topping.id as keyof typeof toppingImages]}
-              className="h-full w-full"
-            />
           </div>
         );
       })}
