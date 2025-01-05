@@ -3,11 +3,9 @@ import {
   GLAZE_VARIANT,
   TOPPING_VARIANT,
   ICING_VARIANT,
-  DOUGH,
 } from "@constant/Donuts/donuts-detail.json";
 import suffle from "@utils/shuffle";
 import { DonutType } from "./donut.type";
-const { color_variant } = DOUGH;
 
 export default class Donut {
   readonly id: string;
@@ -17,7 +15,7 @@ export default class Donut {
   icing?: string;
   side: {
     time: number;
-    color: string;
+    state: string;
   };
 
   constructor({ glaze, topping, icing }: DonutType) {
@@ -28,7 +26,7 @@ export default class Donut {
     this.price = this.calculatePrice();
     this.side = {
       time: 0,
-      color: color_variant.base,
+      state: "base",
     };
   }
 

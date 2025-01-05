@@ -37,7 +37,7 @@ export default function Stove() {
     stoveSlot.forEach((donut, index) => {
       if (!donut) return;
 
-      const { color_variant, time: doughTime } = DOUGH;
+      const { time: doughTime } = DOUGH;
       const { side } = donut;
 
       if (side.time >= 60) return;
@@ -47,15 +47,15 @@ export default function Stove() {
       }
 
       if (side.time >= doughTime.cooked) {
-        side.color = color_variant.cooked;
+        side.state = "cooked";
       }
 
       if (side.time >= doughTime.over_cooked) {
-        side.color = color_variant.over_cooked;
+        side.state = "over_cooked";
       }
 
       if (side.time >= doughTime.burned) {
-        side.color = color_variant.burned;
+        side.state = "burned";
       }
     });
   }, [time]);

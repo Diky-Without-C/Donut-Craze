@@ -13,14 +13,19 @@ export default function ShapedDough() {
     <div className="absolute flex h-full w-full flex-wrap justify-center gap-x-4 gap-y-2">
       {shapedDough.map((donut, index) => {
         return (
-          areAllMolded && (
-            <div
-              key={index}
-              className="flex size-24 items-center justify-center"
-            >
-              {donut && <Donut donut={donut} />}
-            </div>
-          )
+          <div key={index} className="flex size-24 items-center justify-center">
+            {donut && (
+              <Donut
+                donut={donut}
+                condition={areAllMolded}
+                className={
+                  dough.grid[index].isMolded && !areAllMolded
+                    ? "pointer-events-none"
+                    : ""
+                }
+              />
+            )}
+          </div>
         );
       })}
     </div>
