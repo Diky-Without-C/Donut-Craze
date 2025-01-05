@@ -43,15 +43,7 @@ export default function Ticket() {
       {isActive && (
         <main className="flex h-full w-full flex-col items-end">
           <section className="relative flex h-full w-full flex-col p-8 font-mono">
-            <span
-              onClick={(e) => {
-                e.stopPropagation();
-                setIsActive(false);
-              }}
-              className="absolute right-0 top-0 m-1 flex size-8 shrink-0 cursor-pointer select-none items-center justify-center rounded-md bg-gray-300 font-bold"
-            >
-              ×
-            </span>
+            <CloseButton onClose={() => setIsActive(false)} />
             <span className="-mt-4 mb-8 text-lg font-semibold">
               Pesanan #1 ({customers[0].name})
             </span>
@@ -60,5 +52,36 @@ export default function Ticket() {
         </main>
       )}
     </div>
+  );
+}
+
+interface CloseButtonProps {
+  onClose: () => void;
+}
+
+function CloseButton({ onClose }: CloseButtonProps) {
+  return (
+    <span
+      onClick={(e) => {
+        e.stopPropagation();
+        onClose();
+      }}
+      className="absolute right-0 top-0 m-2 flex size-8 shrink-0 cursor-pointer select-none items-center justify-center rounded-md bg-slate-50 font-bold"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={2}
+        stroke="currentColor"
+        className="size-6 text-gray-900"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M6 18 18 6M6 6l12 12"
+        />
+      </svg>
+    </span>
   );
 }
