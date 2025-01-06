@@ -63,7 +63,6 @@ export default function Game() {
         addPackage(currentId);
         break;
       case "package-inside":
-        console.log("package-inside rendered correctly");
         moveToPack(currentId, targetId);
         break;
       case "customer":

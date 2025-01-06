@@ -21,34 +21,28 @@ export default function Package({ pack, isOpen = false }: PackageProps) {
       style={{ height: `${height * size}rem`, width: `${width * size}rem` }}
       className="relative flex items-center justify-center p-1"
     >
-      {!isOpen && (
-        <Overlay
-          src={isOpen ? image.open : image.closed}
-          className={`h-[${isOpen ? 115 : 102}%] min-w-[${isOpen ? 115 : 102}%]`}
-        />
-      )}
+      <Overlay
+        src={isOpen ? image.open : image.closed}
+        className={`h-[${isOpen ? 115 : 102}%] min-w-[${isOpen ? 115 : 102}%]`}
+      />
 
       <div className="h-full w-full">
         <div className="flex h-full w-full flex-wrap items-center justify-evenly">
           {isOpen &&
             pack.donuts &&
-            pack.donuts.map((donut, index) => {
-              console.log("pack rendered");
-
-              return (
-                <Droppable
-                  key={index}
-                  id={`package-inside-${index}`}
-                  className="z-10 flex items-center justify-center border bg-red-700"
-                  style={{
-                    width: `${size - 0.5}rem`,
-                    height: `${size - 0.5}rem`,
-                  }}
-                >
-                  {donut && <Donut donut={donut} />}
-                </Droppable>
-              );
-            })}
+            pack.donuts.map((donut, index) => (
+              <Droppable
+                key={index}
+                id={`package-inside-${index}`}
+                className="z-10 flex items-center justify-center border"
+                style={{
+                  width: `${size - 0.5}rem`,
+                  height: `${size - 0.5}rem`,
+                }}
+              >
+                {donut && <Donut donut={donut} />}
+              </Droppable>
+            ))}
         </div>
       </div>
     </Draggable>

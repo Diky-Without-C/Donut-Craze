@@ -26,8 +26,6 @@ export default function usePackageAction() {
 
   const moveToPack = useCallback(
     (currentId: string, targetId: string) => {
-      console.log("correctly move to pack", "id:", currentId, "to", targetId);
-
       const currentIndex = getIndex(conveyor, currentId);
       const targetIndex = +targetId.replace(/\D/g, "");
 
@@ -47,13 +45,6 @@ export default function usePackageAction() {
       } else {
         if (!updated[targetIndex]) {
           updated[targetIndex] = donut;
-          console.log(
-            "correctly update conveyor",
-            "id:",
-            currentId,
-            "to",
-            targetId,
-          );
           updateConveyor(currentIndex, undefined);
         }
       }
