@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useConveyorStore } from "@services/stores/packingAreaStore";
 import Droppable from "@components/Droppable";
 import Donut from "@components/Donut";
+import Overlay from "@components/Overlay";
+import { ConveyorImages } from "@assets/PackingArea/config";
 
 export default function Conveyor() {
   const { conveyor } = useConveyorStore();
@@ -41,10 +43,12 @@ export default function Conveyor() {
   };
 
   return (
-    <div className="z-10 h-3/5 w-10/12 -translate-x-[20%] bg-neutral-500 p-2">
+    <div className="relative z-10 flex h-3/5 w-10/12 -translate-x-[20%] items-center justify-center p-2">
+      <Overlay src={ConveyorImages} className="h-full w-full" />
+
       <Droppable
         id="conveyor"
-        className="relative flex h-full w-full items-center bg-zinc-700"
+        className="relative flex h-full w-full items-center"
       >
         {conveyor.map((state, index) => {
           const distance = calculateDistance(index) * 100;

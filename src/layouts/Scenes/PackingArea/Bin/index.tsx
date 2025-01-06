@@ -1,12 +1,11 @@
 import Droppable from "@components/Droppable";
+import Overlay from "@components/Overlay";
+import { TrashCanImage } from "@assets/PackingArea/config";
 
 export default function Bin() {
   return (
-    <div className="flex h-1/4 w-3/5 items-end">
-      <Droppable
-        id="trash-can-3"
-        className="h-full w-full bg-emerald-600"
-      ></Droppable>
-    </div>
+    <Droppable id="trash-can-3" className="relative h-1/5 w-2/5">
+      <Overlay src={TrashCanImage} />
+    </Droppable>
   );
 }
