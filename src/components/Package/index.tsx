@@ -26,7 +26,7 @@ export default function Package({ pack, isOpen = false }: PackageProps) {
         className={`h-[${isOpen ? 115 : 102}%] min-w-[${isOpen ? 115 : 102}%]`}
       />
 
-      <div className="h-full w-full bg-blue-400">
+      <div className="h-full w-full">
         <div className="flex h-full w-full flex-wrap items-center justify-evenly">
           {isOpen &&
             pack.donuts.map((donut, index) => {
