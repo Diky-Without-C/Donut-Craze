@@ -31,6 +31,7 @@ export default function Package({ pack, isOpen = false }: PackageProps) {
       <div className="h-full w-full">
         <div className="flex h-full w-full flex-wrap items-center justify-evenly">
           {isOpen &&
+            pack.donuts &&
             pack.donuts.map((donut, index) => {
               console.log("pack rendered");
 
@@ -38,7 +39,11 @@ export default function Package({ pack, isOpen = false }: PackageProps) {
                 <Droppable
                   key={index}
                   id={`package-inside-${index}`}
-                  className={`flex size-[${size - 0.5}rem] z-10 items-center justify-center border bg-red-700`}
+                  className="z-10 flex items-center justify-center border bg-red-700"
+                  style={{
+                    width: `${size - 0.5}rem`,
+                    height: `${size - 0.5}rem`,
+                  }}
                 >
                   {donut && <Donut donut={donut} />}
                 </Droppable>
