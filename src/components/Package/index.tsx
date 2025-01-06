@@ -21,10 +21,12 @@ export default function Package({ pack, isOpen = false }: PackageProps) {
       style={{ height: `${height * size}rem`, width: `${width * size}rem` }}
       className="relative flex items-center justify-center p-1"
     >
-      <Overlay
-        src={isOpen ? image.open : image.closed}
-        className={`h-[${isOpen ? 115 : 102}%] min-w-[${isOpen ? 115 : 102}%]`}
-      />
+      {!isOpen && (
+        <Overlay
+          src={isOpen ? image.open : image.closed}
+          className={`h-[${isOpen ? 115 : 102}%] min-w-[${isOpen ? 115 : 102}%]`}
+        />
+      )}
 
       <div className="h-full w-full">
         <div className="flex h-full w-full flex-wrap items-center justify-evenly">
