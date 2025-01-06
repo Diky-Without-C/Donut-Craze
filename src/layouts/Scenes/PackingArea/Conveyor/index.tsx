@@ -41,7 +41,7 @@ export default function Conveyor() {
   };
 
   return (
-    <div className="h-1/2 w-10/12 -translate-x-[20%] bg-neutral-500 p-2">
+    <div className="z-10 h-3/5 w-10/12 -translate-x-[20%] bg-neutral-500 p-2">
       <Droppable
         id="conveyor"
         className="relative flex h-full w-full items-center bg-zinc-700"
