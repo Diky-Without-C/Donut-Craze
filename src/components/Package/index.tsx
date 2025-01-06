@@ -34,7 +34,7 @@ export default function Package({ pack, isOpen = false }: PackageProps) {
                 <Droppable
                   key={index}
                   id={`package-inside-${index}`}
-                  className={`flex size-[${size - 0.5}rem] items-center justify-center border`}
+                  className={`flex size-[${size - 0.5}rem] z-10 items-center justify-center border bg-red-700`}
                 >
                   {donut && <Donut donut={donut} />}
                 </Droppable>
