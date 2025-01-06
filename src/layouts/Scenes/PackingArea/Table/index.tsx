@@ -25,13 +25,13 @@ export default function Table() {
 
         <Droppable
           id="pack-table"
-          className="flex h-full w-5/6 flex-wrap items-center justify-center gap-x-2 gap-y-1"
+          className="flex h-full w-9/12 flex-wrap items-center justify-center gap-x-2 gap-y-1"
         >
           {packageTable.map((pack) => {
             return <Package key={pack.id} pack={pack} isOpen={true} />;
           })}
         </Droppable>
-        <div className="flex h-full w-1/6 items-center justify-center">
+        <div className="flex h-full w-3/12 items-center justify-center">
           <SubmitButton onClick={handleSubmit} />
         </div>
       </section>
