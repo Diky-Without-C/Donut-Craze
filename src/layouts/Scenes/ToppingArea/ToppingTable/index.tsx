@@ -15,7 +15,7 @@ export default function ToppingTable() {
   return (
     <div className="flex h-4/6 w-full">
       <div className="relative flex h-4/5 w-full flex-col gap-x-2 gap-y-1 rounded-xl rounded-l-none rounded-br-none border-4 border-l-0 border-table-border bg-table-primary p-2">
-        <div className="bg-table-secondary absolute -bottom-1 left-0 h-4 w-[calc(100%+0.25rem)] translate-y-full rounded-br-xl border-b-4 border-r-4 border-table-border">
+        <div className="absolute -bottom-1 left-0 h-4 w-[calc(100%+0.25rem)] translate-y-full rounded-br-xl border-b-4 border-r-4 border-table-border bg-table-secondary">
           <div className="absolute left-0 h-16 w-[calc(100%-0.5rem)] translate-y-4 bg-gray-400"></div>
         </div>
 
@@ -62,7 +62,7 @@ function Topping() {
           <div
             key={topping.id}
             onClick={() => setSelected(index)}
-            className="relative -top-12 flex h-48 w-24 cursor-pointer items-center justify-center will-change-transform"
+            className="relative -top-12 flex h-48 w-24 cursor-pointer items-center justify-center"
           >
             <Overlay
               src={toppingImages[topping.id as keyof typeof toppingImages]}
@@ -71,7 +71,7 @@ function Topping() {
             {selectedToppings[index] && (
               <Draggable
                 id={`topping-${index}`}
-                className="absolute -top-1/3 flex size-14 items-center justify-center"
+                className="absolute -top-12 flex size-14 items-center justify-center"
               >
                 <div className="relative flex size-28 shrink-0 items-center justify-center">
                   <Overlay
