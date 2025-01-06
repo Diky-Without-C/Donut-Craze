@@ -8,13 +8,15 @@ interface PackageProps {
   isOpen?: boolean;
 }
 
+const size = 6.5;
+
 export default function Package({ pack, isOpen = false }: PackageProps) {
   const { height, width } = pack.size;
 
   return (
     <Draggable
       id={`package-${pack.id}`}
-      style={{ height: `${height * 7}rem`, width: `${width * 7}rem` }}
+      style={{ height: `${height * size}rem`, width: `${width * size}rem` }}
       className="bg-red-600 p-1"
     >
       <div className="h-full w-full bg-blue-400">
@@ -25,7 +27,7 @@ export default function Package({ pack, isOpen = false }: PackageProps) {
                 <Droppable
                   key={index}
                   id={`package-inside-${index}`}
-                  className="flex size-[6.5rem] items-center justify-center border"
+                  className={`flex size-[${size - 0.5}rem] items-center justify-center border`}
                 >
                   {donut && <Donut donut={donut} />}
                 </Droppable>
