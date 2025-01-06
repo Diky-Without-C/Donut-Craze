@@ -34,7 +34,7 @@ export default function Package({ pack, isOpen = false }: PackageProps) {
               <Droppable
                 key={index}
                 id={`package-inside-${index}`}
-                className="z-10 flex items-center justify-center border"
+                className="z-10 flex items-center justify-center"
                 style={{
                   width: `${size - 0.5}rem`,
                   height: `${size - 0.5}rem`,
