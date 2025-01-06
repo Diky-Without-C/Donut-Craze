@@ -32,6 +32,8 @@ export default function Package({ pack, isOpen = false }: PackageProps) {
         <div className="flex h-full w-full flex-wrap items-center justify-evenly">
           {isOpen &&
             pack.donuts.map((donut, index) => {
+              console.log("pack rendered");
+
               return (
                 <Droppable
                   key={index}
