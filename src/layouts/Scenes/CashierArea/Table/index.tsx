@@ -6,14 +6,12 @@ export default function Table() {
   cashierPackages.sort((a, b) => b.donuts.length - a.donuts.length);
 
   return (
-    <div className="flex h-2/6 w-full items-end justify-center bg-slate-600">
-      {cashierPackages.map((pack) => {
-        return (
-          <div className="scale-90" key={pack.id}>
-            <Package pack={pack}></Package>
-          </div>
-        );
-      })}
+    <div className="flex h-2/6 w-full justify-center border-t-4 border-[#908887] bg-[#e7d7d5]">
+      <div className="relative -top-4 flex h-full w-6/12 translate-x-1/4 gap-1">
+        {cashierPackages.map((pack) => {
+          return <Package key={pack.id} pack={pack}></Package>;
+        })}
+      </div>
     </div>
   );
 }

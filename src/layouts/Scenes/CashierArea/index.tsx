@@ -9,7 +9,7 @@ export default function CashierArea() {
   return (
     <section className="flex h-full min-w-full snap-start flex-col justify-end">
       <div className="flex h-3/5 w-full items-end">
-        <div className="flex h-full w-2/12 translate-y-1/4 items-end justify-end">
+        <div className="relative flex h-full w-2/12 items-end justify-end">
           <Cashier />
         </div>
         <Character character={customers[0]} />
