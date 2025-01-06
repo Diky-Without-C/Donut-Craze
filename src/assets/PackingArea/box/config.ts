@@ -3,10 +3,10 @@ import box3 from "./box3.svg";
 import box4 from "./box4.svg";
 import box6 from "./box6.svg";
 
-import box1Closed from "./box1Closed.svg";
-import box3Closed from "./box3Closed.svg";
-import box4Closed from "./box4Closed.svg";
-import box6Closed from "./box6Closed.svg";
+import box1Closed from "./box1-closed.svg";
+import box3Closed from "./box3-closed.svg";
+import box4Closed from "./box4-closed.svg";
+import box6Closed from "./box6-closed.svg";
 
 const boxes = {
   box1: {
