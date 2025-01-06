@@ -44,7 +44,7 @@ export default function Conveyor() {
     <div className="h-1/2 w-10/12 -translate-x-[20%] bg-neutral-500 p-2">
       <Droppable
         id="conveyor"
-        className="relative flex h-full w-full bg-zinc-700"
+        className="relative flex h-full w-full items-center bg-zinc-700"
       >
         {conveyor.map((state, index) => {
           const distance = calculateDistance(index) * 100;

@@ -22,10 +22,10 @@ export default function Dough() {
   }, [isFlattened]);
 
   const size = isFlattened
-    ? "absolute h-[calc(100%-2rem)] w-[calc(100%-2rem)] rounded-3xl transition-all duration-[1200ms]"
+    ? "absolute h-[14rem] w-[30rem] rounded-3xl transition-all duration-[1200ms]"
     : isOnTable
       ? "size-28 rounded-full"
-      : "h-full w-full rounded-[3rem]";
+      : "h-[5.5rem] w-[7rem] rounded-[3rem]";
 
   const backgroundColor = areAllMolded ? "transparent" : color_variant.base;
 
@@ -38,7 +38,7 @@ export default function Dough() {
     >
       <Droppable
         id="inside-dough"
-        className="relative flex h-full w-full flex-wrap justify-center gap-x-4 gap-y-2"
+        className="relative flex h-full w-full flex-wrap items-center justify-center gap-x-4 gap-y-2"
       >
         {isFlattened && (
           <>

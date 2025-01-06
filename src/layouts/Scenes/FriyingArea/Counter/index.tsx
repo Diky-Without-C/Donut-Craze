@@ -16,7 +16,7 @@ export default function Counter() {
       <div className="relative flex h-full w-32 cursor-pointer items-center justify-center p-3">
         <Overlay src={DoughContainer} className="h-full w-full" />
 
-        <div className="relative flex h-full w-full items-center justify-center pb-2">
+        <div className="relative flex h-[7rem] w-[7rem] items-center justify-center pb-2">
           {!dough.isOnTable && <Dough />}
         </div>
       </div>
