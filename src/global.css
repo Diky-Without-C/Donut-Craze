@@ -21,21 +21,6 @@
   }
 }
 
-.conveyor-belt {
-  animation: slide 2s linear;
-}
-
-@keyframes slide {
-  0% {
-    position: absolute;
-    left: 0;
-  }
-  100% {
-    position: relative;
-    transform: translateX(2200%);
-  }
-}
-
 .frying {
   animation: fry 2s ease-in-out infinite;
 }
