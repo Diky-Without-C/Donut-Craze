@@ -2,7 +2,17 @@ import { ComponentProps } from "react";
 import Self from "@core/classes/Donut";
 import Draggable from "@components/Draggable";
 import Overlay from "@components/Overlay";
-import { DonutImages } from "@assets/Donut/config";
+import {
+  DonutImages,
+  GlazeImages,
+  IcingImages,
+  ToppingImages,
+} from "@assets/Donut/config";
+import {
+  GLAZE_VARIANT,
+  ICING_VARIANT,
+  TOPPING_VARIANT,
+} from "@constant/Donuts/donuts-detail.json";
 
 interface DonutProps extends ComponentProps<"div"> {
   donut: Self;
@@ -22,6 +32,21 @@ export default function Donut({
   const { state } = donut.side;
   const isCooked = state !== "base";
 
+  const glazeId = GLAZE_VARIANT.find(
+    (variant) => variant.name === donut.glaze,
+  )?.id;
+  const glazeSrc = GlazeImages[glazeId as keyof typeof GlazeImages];
+
+  const icingId = ICING_VARIANT.find(
+    (variant) => variant.name === donut.icing,
+  )?.id;
+  const icingSrc = IcingImages[icingId as keyof typeof IcingImages];
+
+  const toppingId = TOPPING_VARIANT.find(
+    (variant) => variant.name === donut.topping,
+  )?.id;
+  const toppingSrc = ToppingImages[toppingId as keyof typeof ToppingImages];
+
   return (
     <Draggable
       {...props}
@@ -35,12 +60,15 @@ export default function Donut({
         src={DonutImages[state as keyof typeof DonutImages]}
         className="h-[115%] min-w-[115%] shrink-0"
       />
-
-      <div className="absolute flex flex-col items-center">
-        <span>{donut.glaze}</span>
-        <span>{donut.icing}</span>
-        <span>{donut.topping}</span>
-      </div>
+      {donut.glaze && (
+        <Overlay src={glazeSrc} className="h-[115%] min-w-[115%] shrink-0" />
+      )}
+      {donut.icing && (
+        <Overlay src={icingSrc} className="h-[115%] min-w-[115%] shrink-0" />
+      )}
+      {donut.topping && (
+        <Overlay src={toppingSrc} className="h-[115%] min-w-[115%] shrink-0" />
+      )}
     </Draggable>
   );
 }

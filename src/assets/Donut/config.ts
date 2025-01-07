@@ -1,8 +1,6 @@
-import base from "./base.svg";
-import cooked from "./cooked.svg";
-import over_cooked from "./overcooked.svg";
-import burned from "./burnt.svg";
+import { DonutImages } from "./doughs/config";
+import { GlazeImages } from "./glazes/config";
+import { IcingImages } from "./icings/config";
+import { ToppingImages } from "./toppings/config";
 
-const DonutImages = { base, cooked, over_cooked, burned };
-
-export { DonutImages };
+export { DonutImages, GlazeImages, IcingImages, ToppingImages };
