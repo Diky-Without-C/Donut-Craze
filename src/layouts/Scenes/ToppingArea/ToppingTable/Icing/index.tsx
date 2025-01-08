@@ -15,11 +15,11 @@ export default function Icing() {
           id={`icing-${index}`}
           onDraggingStart={() => setSelected(index)}
           onDraggingEnd={() => setSelected(null)}
-          className="relative flex h-32 w-16 items-center justify-center transition-all duration-500"
+          className="relative flex h-32 w-16 items-center justify-center"
         >
           <Overlay
             src={icingImages[icing.id as keyof typeof icingImages]}
-            className={selected === index ? "rotate-180 transition-all" : ""}
+            className={`${selected === index ? "rotate-180" : "rotate-0"} transition-all duration-200`}
           />
         </Draggable>
       ))}

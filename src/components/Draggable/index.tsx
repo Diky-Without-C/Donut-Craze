@@ -14,6 +14,7 @@ export default function Draggable({
   children,
   condition = true,
   style,
+  className,
   onDraggingStart,
   onDraggingEnd,
   ...props
@@ -53,6 +54,7 @@ export default function Draggable({
       {...attributes}
       {...props}
       style={{ ...style, ...getDraggableStyle() }}
+      className={`${className} transition-all duration-500`}
     >
       {children}
     </div>
