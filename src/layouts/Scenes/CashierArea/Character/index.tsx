@@ -1,12 +1,11 @@
 import Droppable from "@components/Droppable";
 import Customer from "@core/classes/Customers";
-import Dialog from "./Dialog";
 
 interface CharacterProps {
   character: Customer;
 }
 
-export default function Character({ character }: CharacterProps) {
+export default function Character({}: CharacterProps) {
   return (
     <Droppable
       id="customer"
