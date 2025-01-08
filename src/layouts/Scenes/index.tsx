@@ -47,7 +47,7 @@ export default function Scene() {
         </section>
         <section
           ref={pantryAreaRef}
-          className="no-scrollbar relative flex h-full w-full overflow-x-auto"
+          className="relative flex h-full w-full overflow-x-auto"
         >
           <section className="absolute flex min-h-full w-[300%] overflow-hidden">
             <FriyingArea />
