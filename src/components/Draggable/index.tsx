@@ -1,4 +1,10 @@
-import { ComponentProps, useRef, useCallback } from "react";
+import {
+  ComponentProps,
+  useRef,
+  useCallback,
+  useState,
+  useEffect,
+} from "react";
 import { useDraggable } from "@dnd-kit/core";
 import combineRefs from "@utils/combineRef";
 
@@ -19,23 +25,32 @@ export default function Draggable({
   onDraggingEnd,
   ...props
 }: DraggableProps) {
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragEndTimeout, setDragEndTimeout] = useState<number | null>(null);
+
   const { attributes, listeners, setNodeRef, transform } = useDraggable({ id });
 
   const localRef = useRef<HTMLDivElement>(null);
   const combinedRef = combineRefs(localRef, setNodeRef);
 
   const getDraggableStyle = useCallback(() => {
-    if (!condition || !transform) return {};
+    if (!condition) return {};
 
-    return {
-      transform: `translateX(${transform.x}px) translateY(${transform.y}px) scale(1.05)`,
-      zIndex: 9999999,
-      transition: "none",
-      cursor: "grab",
-    };
-  }, [condition, transform]);
+    if (transform || isDragging) {
+      return {
+        transform: transform
+          ? `translateX(${transform.x}px) translateY(${transform.y}px) scale(1.05)`
+          : undefined,
+        zIndex: 9999,
+        transition: transform ? "none" : "",
+      };
+    }
+
+    return {};
+  }, [condition, transform, isDragging]);
 
   const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+    setIsDragging(true);
     listeners?.onPointerDown?.(event);
     onDraggingStart?.();
   };
@@ -43,7 +58,22 @@ export default function Draggable({
   const handlePointerUp = (event: React.PointerEvent<HTMLDivElement>) => {
     listeners?.onPointerUp?.(event);
     onDraggingEnd?.();
+
+    setDragEndTimeout(
+      setTimeout(() => {
+        setIsDragging(false);
+        setDragEndTimeout(null);
+      }, 500),
+    );
   };
+
+  useEffect(() => {
+    return () => {
+      if (dragEndTimeout) {
+        clearTimeout(dragEndTimeout);
+      }
+    };
+  }, [dragEndTimeout]);
 
   return (
     <div
@@ -54,7 +84,7 @@ export default function Draggable({
       {...attributes}
       {...props}
       style={{ ...style, ...getDraggableStyle() }}
-      className={`${className} transition-all duration-500`}
+      className={`${className} ${isDragging ? "cursor-grabbing" : "cursor-grab"} transition-all duration-500`}
     >
       {children}
     </div>
