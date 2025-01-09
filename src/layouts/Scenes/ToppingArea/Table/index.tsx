@@ -9,7 +9,7 @@ export default function Table() {
   return (
     <div className="flex h-4/6 w-full flex-col justify-end">
       <div className="relative flex h-4/5 w-full flex-wrap gap-x-2 gap-y-1 border-4 border-table-border bg-table-primary p-2">
-        <div className="bg-table-secondary absolute -bottom-1 left-0 h-4 w-[calc(100%+0.25rem)] translate-y-full border-b-4 border-r-4 border-table-border">
+        <div className="absolute -bottom-1 left-0 h-4 w-[calc(100%+0.25rem)] translate-y-full border-b-4 border-r-4 border-table-border bg-table-secondary">
           <div className="absolute -right-1 h-16 w-full translate-y-4 bg-gray-400"></div>
         </div>
 

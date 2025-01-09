@@ -4,6 +4,7 @@ import Droppable from "@components/Droppable";
 import Donut from "@components/Donut";
 import Overlay from "@components/Overlay";
 import { ConveyorImages } from "@assets/PackingArea/config";
+import ConveyorTrail from "./Trail";
 
 export default function Conveyor() {
   const { conveyor } = useConveyorStore();
@@ -44,7 +45,10 @@ export default function Conveyor() {
 
   return (
     <div className="relative z-10 flex h-3/5 w-10/12 -translate-x-[20%] items-center justify-center p-2">
-      <Overlay src={ConveyorImages} className="h-full w-full" />
+      <div className="absolute flex h-full w-full items-center justify-end overflow-hidden">
+        <ConveyorTrail />
+      </div>
+      <Overlay src={ConveyorImages.outline} className="h-[105%] min-w-[102%]" />
 
       <Droppable
         id="conveyor"
