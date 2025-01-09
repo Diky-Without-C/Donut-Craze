@@ -41,7 +41,8 @@ export default function useTrashAction() {
     updateTable(getIndex(table, currentId));
     updateConveyor(getIndex(conveyor, currentId));
     if (currentId.includes("package")) setPackageTable(() => []);
-    updatePackageContent(getIndex(packageTable[0].donuts, currentId));
+    if (packageTable[0] && packageTable[0].donuts)
+      updatePackageContent(getIndex(packageTable[0].donuts, currentId));
   };
 
   return { moveToTrashCan };
