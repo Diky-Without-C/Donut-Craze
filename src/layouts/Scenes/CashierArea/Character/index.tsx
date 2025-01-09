@@ -8,8 +8,6 @@ interface CharacterProps {
 }
 
 export default function Character({ character }: CharacterProps) {
-  console.log(CharacterImages, character.name);
-
   return (
     <Droppable
       id="customer"
