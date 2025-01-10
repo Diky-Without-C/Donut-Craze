@@ -46,20 +46,38 @@ export default function useTransferItem() {
   );
 
   const moveToDrainingTray = useCallback(
-    (currentId: string) => {
+    (currentId: string, targetId: string) => {
       const index = getIndex(stoveSlot, currentId);
-      if (!stoveSlot[index] || isFull(drainingTray)) return;
+      const changeIndex = getIndex(drainingTray, currentId);
+      const drainingIndex = +targetId.replace(/\D/g, "");
 
-      setDrainingTray((self) => {
-        const updated = [...self];
-        const availableIndex = updated.findIndex((state) => !state);
-        updated[availableIndex] = stoveSlot[index];
-        return updated;
-      });
+      if (isFull(drainingTray) || drainingTray[drainingIndex]) return;
 
-      updateStove(index, undefined);
+      if (stoveSlot[index]) {
+        setDrainingTray((self) => {
+          const updated = [...self];
+          updated[drainingIndex] = stoveSlot[index];
+          return updated;
+        });
+
+        updateStove(index, undefined);
+      } else if (drainingTray[changeIndex]) {
+        setDrainingTray((self) => {
+          const updated = [...self];
+          updated[drainingIndex] = drainingTray[changeIndex];
+          return updated;
+        });
+
+        updateDrainingTray(changeIndex, undefined);
+      }
     },
-    [stoveSlot, setStoveSlot, setDrainingTray],
+    [
+      stoveSlot,
+      drainingTray,
+      setStoveSlot,
+      setDrainingTray,
+      updateDrainingTray,
+    ],
   );
 
   const moveToShelf = useCallback(

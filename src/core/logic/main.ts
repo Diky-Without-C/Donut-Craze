@@ -37,7 +37,7 @@ export default function Game() {
         moveToStove(currentId);
         break;
       case "draining-tray":
-        moveToDrainingTray(currentId);
+        moveToDrainingTray(currentId, targetId);
         break;
       case "trash-can":
         moveToTrashCan(currentId);
