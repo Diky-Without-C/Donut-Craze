@@ -43,7 +43,7 @@ export default function Game() {
         moveToTrashCan(currentId);
         break;
       case "shelf":
-        moveToShelf(currentId);
+        moveToShelf(currentId, targetId);
         break;
       case "tableSlot":
         moveToTable(currentId, targetId);

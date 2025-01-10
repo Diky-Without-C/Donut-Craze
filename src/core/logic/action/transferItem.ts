@@ -81,30 +81,48 @@ export default function useTransferItem() {
   );
 
   const moveToShelf = useCallback(
-    (currentId: string) => {
+    (currentId: string, targetId: string) => {
       const drainingIndex = getIndex(drainingTray, currentId);
       const stoveIndex = getIndex(stoveSlot, currentId);
-      if (isFull(stock)) return;
+      const stockIndex = +targetId.replace(/\D/g, "");
+      const changeIndex = getIndex(stock, currentId);
+
+      if (isFull(stock) || stock[stockIndex]) return;
 
       if (drainingTray[drainingIndex]) {
         setStock((self) => {
           const updated = [...self];
-          const availableIndex = updated.findIndex((state) => !state);
-          updated[availableIndex] = drainingTray[drainingIndex];
+          updated[stockIndex] = drainingTray[drainingIndex];
           return updated;
         });
+
         updateDrainingTray(drainingIndex, undefined);
       } else if (stoveSlot[stoveIndex]) {
         setStock((self) => {
           const updated = [...self];
-          const availableIndex = updated.findIndex((state) => !state);
-          updated[availableIndex] = stoveSlot[stoveIndex];
+          updated[stockIndex] = stoveSlot[stoveIndex];
           return updated;
         });
+
         updateStove(stoveIndex, undefined);
+      } else if (stock[changeIndex]) {
+        setStock((self) => {
+          const updated = [...self];
+          updated[stockIndex] = stock[changeIndex];
+          return updated;
+        });
+
+        updateStock(changeIndex, undefined);
       }
     },
-    [drainingTray, stoveSlot, stock, updateDrainingTray, updateStove],
+    [
+      drainingTray,
+      stoveSlot,
+      stock,
+      updateDrainingTray,
+      updateStove,
+      updateStock,
+    ],
   );
 
   const moveToTable = useCallback(
