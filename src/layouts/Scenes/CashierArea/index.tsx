@@ -1,10 +1,7 @@
-import { useEffect, useState } from "react";
-import useCustomersStore from "@services/stores/customersStore";
+import { useState } from "react";
 import Cashier from "./Cashier";
-import Character from "./Character";
 import Table from "./Table";
-import Dialog from "./Character/Dialog";
-import { CharacterImages } from "@assets/CashierArea/config";
+import Customer from "./Customer";
 
 export default function CashierArea() {
   const [isStart, setIsStart] = useState(false);
@@ -32,39 +29,5 @@ export default function CashierArea() {
       </div>
       <Table />
     </section>
-  );
-}
-
-function Customer() {
-  const { customers } = useCustomersStore();
-  const [image, setImage] = useState("");
-  const [isPoppingUp, setIsPoppingUp] = useState(true);
-
-  const currentImage =
-    CharacterImages[customers[0]?.name as keyof typeof CharacterImages];
-
-  useEffect(() => {
-    if (image !== currentImage) {
-      setIsPoppingUp(false);
-
-      const timeout = setTimeout(() => {
-        setImage(currentImage);
-        setIsPoppingUp(true);
-      }, 500);
-
-      return () => clearTimeout(timeout);
-    }
-  }, [currentImage]);
-
-  if (!customers[0]) return null;
-
-  return (
-    <>
-      <Character
-        image={image}
-        className={isPoppingUp ? "pop-up" : "pop-down"}
-      />
-      <Dialog character={customers[0]} />
-    </>
   );
 }
