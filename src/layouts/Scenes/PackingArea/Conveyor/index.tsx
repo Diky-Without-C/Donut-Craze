@@ -11,6 +11,9 @@ export default function Conveyor() {
   const [conveyorStates, setConveyorStates] = useState(() =>
     Array(conveyor.length).fill(undefined),
   );
+  const [positions, setPositions] = useState<number[]>(
+    Array(conveyor.length).fill(0),
+  );
 
   useEffect(() => {
     if (needsStateSync()) {
@@ -18,7 +21,20 @@ export default function Conveyor() {
     }
   }, [conveyor]);
 
-  const needsStateSync = (): boolean => {
+  useEffect(() => {
+    let animationFrameId: number;
+
+    const animate = () => {
+      updatePositions();
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    animationFrameId = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [positions, conveyorStates]);
+
+  const needsStateSync = () => {
     const activeItems = conveyor.filter(Boolean).length;
     const activeStates = conveyorStates.filter(Boolean).length;
     return activeItems !== activeStates;
@@ -35,7 +51,16 @@ export default function Conveyor() {
     setConveyorStates(sortedConveyor);
   };
 
-  const calculateDistance = (currentIndex: number): number => {
+  const updatePositions = () => {
+    setPositions((prevPositions) =>
+      prevPositions.map((position, index) => {
+        const distance = (calculateDistance(index) * 100) / conveyor.length;
+        return Math.min(position + 0.2, distance);
+      }),
+    );
+  };
+
+  const calculateDistance = (currentIndex: number) => {
     const currentItem = conveyor[currentIndex];
     const targetIndex = conveyorStates.findIndex(
       (state) => state?.item.id === currentItem?.item.id,
@@ -54,23 +79,17 @@ export default function Conveyor() {
         id="conveyor"
         className="relative flex h-full w-full items-center"
       >
-        {conveyor.map((state, index) => {
-          const distance = calculateDistance(index) * 100;
-          const duration = state ? 1500 : 0;
-
-          return (
-            <div
-              key={index}
-              style={{
-                transform: `translateX(${distance}%)`,
-                transition: `transform ${duration}ms linear`,
-              }}
-              className="absolute flex h-full w-1/12"
-            >
-              {state && <Donut donut={state.item} />}
-            </div>
-          );
-        })}
+        {conveyor.map((state, index) => (
+          <div
+            key={index}
+            style={{
+              left: `${positions[index]}%`,
+            }}
+            className="absolute flex h-full w-1/12"
+          >
+            {state && <Donut donut={state.item} />}
+          </div>
+        ))}
       </Droppable>
     </div>
   );
