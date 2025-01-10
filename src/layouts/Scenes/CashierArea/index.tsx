@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useCustomersStore from "@services/stores/customersStore";
 import Cashier from "./Cashier";
 import Character from "./Character";
 import Table from "./Table";
 import Dialog from "./Character/Dialog";
+import { CharacterImages } from "@assets/CashierArea/config";
 
 export default function CashierArea() {
-  const { customers } = useCustomersStore();
   const [isStart, setIsStart] = useState(false);
 
   return (
@@ -15,7 +15,7 @@ export default function CashierArea() {
         <div className="relative flex h-full w-3/12 items-end justify-end">
           <Cashier />
         </div>
-        <div className="relative flex h-full w-9/12 items-end">
+        <div className="relative flex h-full w-9/12 items-end overflow-hidden">
           {!isStart ? (
             <div className="flex h-full w-full items-center justify-center bg-slate-200">
               <button
@@ -26,16 +26,45 @@ export default function CashierArea() {
               </button>
             </div>
           ) : (
-            customers[0] && (
-              <>
-                <Character character={customers[0]} />
-                <Dialog character={customers[0]} />
-              </>
-            )
+            <Customer />
           )}
         </div>
       </div>
       <Table />
     </section>
+  );
+}
+
+function Customer() {
+  const { customers } = useCustomersStore();
+  const [image, setImage] = useState("");
+  const [isPoppingUp, setIsPoppingUp] = useState(true);
+
+  const currentImage =
+    CharacterImages[customers[0]?.name as keyof typeof CharacterImages];
+
+  useEffect(() => {
+    if (image !== currentImage) {
+      setIsPoppingUp(false);
+
+      const timeout = setTimeout(() => {
+        setImage(currentImage);
+        setIsPoppingUp(true);
+      }, 500);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [currentImage]);
+
+  if (!customers[0]) return null;
+
+  return (
+    <>
+      <Character
+        image={image}
+        className={isPoppingUp ? "pop-up" : "pop-down"}
+      />
+      <Dialog character={customers[0]} />
+    </>
   );
 }

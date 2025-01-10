@@ -1,22 +1,23 @@
+import { ComponentProps } from "react";
 import Droppable from "@components/Droppable";
-import Customer from "@core/classes/Customers";
 import Overlay from "@components/Overlay";
-import { CharacterImages } from "@assets/CashierArea/config";
 
-interface CharacterProps {
-  character: Customer;
+interface CharacterProps extends ComponentProps<"div"> {
+  image: string;
 }
 
-export default function Character({ character }: CharacterProps) {
+export default function Character({
+  image,
+  className,
+  ...props
+}: CharacterProps) {
   return (
     <Droppable
+      {...props}
       id="customer"
-      className="relative flex h-3/4 w-3/12 items-end justify-center"
+      className={`${className} relative flex h-3/4 w-3/12 items-end justify-center`}
     >
-      <Overlay
-        src={CharacterImages[character.name as keyof typeof CharacterImages]}
-        className="min-w-[150%]"
-      />
+      <Overlay src={image} className="min-w-[150%]" />
     </Droppable>
   );
 }
