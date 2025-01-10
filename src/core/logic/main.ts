@@ -22,7 +22,7 @@ export default function Game() {
   const { serveOrder } = useCustomerAction();
 
   const updateDonut = (currentId: string, targetId: string) => {
-    switch (targetId.replace(/\-\d/g, "")) {
+    switch (targetId.replace(/\-\d+/g, "")) {
       case "table":
         if (currentId === "dough") updateDough({ isOnTable: true });
         break;
