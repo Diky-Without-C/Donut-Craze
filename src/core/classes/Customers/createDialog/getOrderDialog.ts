@@ -16,10 +16,18 @@ export default function getOrderDialog(self: Customer) {
     const { glaze, topping, icing } = order;
     const parts: string[] = [];
 
+    if (current === 0 && totalOrders > 3 && !isHalf && sameOrder.length > 1) {
+      parts.push(`${totalOrders} donat.`);
+    }
+
     if (isHalf) {
-      parts.push(
-        current === 0 ? `${totalOrders} donat, setengah` : "setengahnya lagi",
-      );
+      if (totalOrders % 2 === 0) {
+        parts.push(
+          current === 0 ? `${totalOrders} donat, setengah` : "setengahnya lagi",
+        );
+      } else {
+        parts.push(current === 0 ? `${totalOrders} donat,` : "sisanya");
+      }
     } else if (count && count > 1) {
       parts.push(String(count));
     }
@@ -48,11 +56,15 @@ export default function getOrderDialog(self: Customer) {
     buildOrderDescription(order, count, false, index),
   );
 
-  if (chance(1 / 4) && sameOrder.length === 2 && totalOrders % 2 === 0) {
-    orderDialog = sameOrder.map(({ order }, index) =>
-      buildOrderDescription(order, index, true, index),
-    );
+  if (chance(1 / 2)) {
+    if (sameOrder.length === 2 && sameOrder[0].count > 1) {
+      orderDialog = sameOrder.map(({ order }, index) =>
+        buildOrderDescription(order, index, true, index),
+      );
+    }
   }
 
-  return formatOrders(orderDialog);
+  const dialog = orderDialog;
+
+  return formatOrders(dialog);
 }
