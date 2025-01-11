@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import Donut from "@core/classes/Donut";
 import { fryingArea } from "@constant/Game/game-detail.json";
+
 const { maxDoughSlots, maxDrainingSlots, maxStoveSlots } = fryingArea;
 
 interface GridCell {
@@ -16,27 +17,33 @@ interface DoughState {
 
 interface DoughStore {
   dough: DoughState;
-  setDough: (updater: (self: DoughState) => DoughState) => void;
+  setDough: (dough: DoughState | ((self: DoughState) => DoughState)) => void;
 }
 
 interface ShapedDoughStore {
   shapedDough: (Donut | undefined)[];
   setShapedDough: (
-    updater: (self: (Donut | undefined)[]) => (Donut | undefined)[],
+    shapedDough:
+      | (Donut | undefined)[]
+      | ((self: (Donut | undefined)[]) => (Donut | undefined)[]),
   ) => void;
 }
 
 interface StoveStore {
   stoveSlot: (Donut | undefined)[];
   setStoveSlot: (
-    updater: (self: (Donut | undefined)[]) => (Donut | undefined)[],
+    stoveSlot:
+      | (Donut | undefined)[]
+      | ((self: (Donut | undefined)[]) => (Donut | undefined)[]),
   ) => void;
 }
 
 interface DrainingStore {
   drainingTray: (Donut | undefined)[];
   setDrainingTray: (
-    updater: (self: (Donut | undefined)[]) => (Donut | undefined)[],
+    drainingTray:
+      | (Donut | undefined)[]
+      | ((self: (Donut | undefined)[]) => (Donut | undefined)[]),
   ) => void;
 }
 
@@ -51,32 +58,50 @@ const initialDough: DoughState = {
   grid: Array.from({ length: maxDoughSlots }, () => ({ ...initialGridCell })),
 };
 
-const useDoughStore = create<DoughStore>((set) => ({
-  dough: initialDough,
-  setDough: (updater) => set((state) => ({ dough: updater(state.dough) })),
-}));
-
 const initialShapedDough: undefined[] = Array(maxDoughSlots).fill(undefined);
 const initialStoveSlot: undefined[] = Array(maxStoveSlots).fill(undefined);
-const initialDrayningTray: undefined[] =
+const initialDrainingTray: undefined[] =
   Array(maxDrainingSlots).fill(undefined);
+
+const useDoughStore = create<DoughStore>((set) => ({
+  dough: initialDough,
+  setDough: (dough) =>
+    set((state) => ({
+      dough: typeof dough === "function" ? dough(state.dough) : dough,
+    })),
+}));
 
 const useShapedDoughStore = create<ShapedDoughStore>((set) => ({
   shapedDough: initialShapedDough,
-  setShapedDough: (updater) =>
-    set((state) => ({ shapedDough: updater(state.shapedDough) })),
+  setShapedDough: (shapedDough) =>
+    set((state) => ({
+      shapedDough:
+        typeof shapedDough === "function"
+          ? shapedDough(state.shapedDough)
+          : shapedDough,
+    })),
 }));
 
 const useStoveStore = create<StoveStore>((set) => ({
   stoveSlot: initialStoveSlot,
-  setStoveSlot: (updater) =>
-    set((state) => ({ stoveSlot: updater(state.stoveSlot) })),
+  setStoveSlot: (stoveSlot) =>
+    set((state) => ({
+      stoveSlot:
+        typeof stoveSlot === "function"
+          ? stoveSlot(state.stoveSlot)
+          : stoveSlot,
+    })),
 }));
 
 const useDrainingStore = create<DrainingStore>((set) => ({
-  drainingTray: initialDrayningTray,
-  setDrainingTray: (updater) =>
-    set((state) => ({ drainingTray: updater(state.drainingTray) })),
+  drainingTray: initialDrainingTray,
+  setDrainingTray: (drainingTray) =>
+    set((state) => ({
+      drainingTray:
+        typeof drainingTray === "function"
+          ? drainingTray(state.drainingTray)
+          : drainingTray,
+    })),
 }));
 
 export {
@@ -85,4 +110,7 @@ export {
   useStoveStore,
   useDrainingStore,
   initialDough,
+  initialShapedDough,
+  initialStoveSlot,
+  initialDrainingTray,
 };

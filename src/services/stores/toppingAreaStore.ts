@@ -5,40 +5,64 @@ import { TOPPING_VARIANT } from "@constant/Donuts/donuts-detail.json";
 interface StockStore {
   stock: (Donut | undefined)[];
   setStock: (
-    updater: (self: (Donut | undefined)[]) => (Donut | undefined)[],
+    stock:
+      | (Donut | undefined)[]
+      | ((self: (Donut | undefined)[]) => (Donut | undefined)[]),
   ) => void;
 }
 
 interface TableStore {
   table: (Donut | undefined)[];
   setTable: (
-    updater: (self: (Donut | undefined)[]) => (Donut | undefined)[],
+    table:
+      | (Donut | undefined)[]
+      | ((self: (Donut | undefined)[]) => (Donut | undefined)[]),
   ) => void;
 }
 
 interface SelectedToppingStore {
   selectedToppings: boolean[];
-  setSelectedToppings: (updater: (self: boolean[]) => boolean[]) => void;
+  setSelectedToppings: (
+    selectedToppings: boolean[] | ((self: boolean[]) => boolean[]),
+  ) => void;
 }
 
-const initialStock: undefined[] = Array(6).fill(undefined);
-const initialTable: undefined[] = Array(8).fill(undefined);
+const initialStock: (Donut | undefined)[] = Array(6).fill(undefined);
+const initialTable: (Donut | undefined)[] = Array(8).fill(undefined);
 const initialTopping: boolean[] = Array(TOPPING_VARIANT.length).fill(false);
 
 const useStockStore = create<StockStore>((set) => ({
   stock: initialStock,
-  setStock: (updater) => set((state) => ({ stock: updater(state.stock) })),
+  setStock: (stock) =>
+    set((state) => ({
+      stock: typeof stock === "function" ? stock(state.stock) : stock,
+    })),
 }));
 
 const useTableStore = create<TableStore>((set) => ({
   table: initialTable,
-  setTable: (updater) => set((state) => ({ table: updater(state.table) })),
+  setTable: (table) =>
+    set((state) => ({
+      table: typeof table === "function" ? table(state.table) : table,
+    })),
 }));
 
 const useSelectedTopping = create<SelectedToppingStore>((set) => ({
   selectedToppings: initialTopping,
-  setSelectedToppings: (updater) =>
-    set((state) => ({ selectedToppings: updater(state.selectedToppings) })),
+  setSelectedToppings: (selectedToppings) =>
+    set((state) => ({
+      selectedToppings:
+        typeof selectedToppings === "function"
+          ? selectedToppings(state.selectedToppings)
+          : selectedToppings,
+    })),
 }));
 
-export { useStockStore, useTableStore, useSelectedTopping };
+export {
+  useStockStore,
+  useTableStore,
+  useSelectedTopping,
+  initialStock,
+  initialTable,
+  initialTopping,
+};

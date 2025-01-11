@@ -3,13 +3,20 @@ import Customer from "@core/classes/Customers";
 
 interface CustomerStore {
   customers: Customer[];
-  setCustomer: (updater: (self: Customer[]) => Customer[]) => void;
+  setCustomer: (
+    customers: Customer[] | ((self: Customer[]) => Customer[]),
+  ) => void;
 }
 
 const useCustomersStore = create<CustomerStore>((set) => ({
   customers: [],
-  setCustomer: (updater) =>
-    set((state) => ({ customers: updater(state.customers) })),
+  setCustomer: (customers) =>
+    set((state) => ({
+      customers:
+        typeof customers === "function"
+          ? customers(state.customers)
+          : customers,
+    })),
 }));
 
 export default useCustomersStore;

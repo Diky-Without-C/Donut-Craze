@@ -3,13 +3,20 @@ import Packaging from "@core/classes/Packaging";
 
 interface CashierPackStore {
   cashierPackages: Packaging[];
-  setCashierPackages: (updater: (self: Packaging[]) => Packaging[]) => void;
+  setCashierPackages: (
+    packages: Packaging[] | ((self: Packaging[]) => Packaging[]),
+  ) => void;
 }
 
 const useCashierPackStore = create<CashierPackStore>((set) => ({
   cashierPackages: [],
-  setCashierPackages: (updater) =>
-    set((state) => ({ cashierPackages: updater(state.cashierPackages) })),
+  setCashierPackages: (packages) =>
+    set((state) => ({
+      cashierPackages:
+        typeof packages === "function"
+          ? packages(state.cashierPackages)
+          : packages,
+    })),
 }));
 
 export { useCashierPackStore };

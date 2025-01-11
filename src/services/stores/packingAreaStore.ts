@@ -1,33 +1,46 @@
 import { create } from "zustand";
 import Donut from "@core/classes/Donut";
-import Packagig from "@core/classes/Packaging";
+import Packaging from "@core/classes/Packaging";
 
-interface conveyerStore {
+interface ConveyerStore {
   conveyor: ({ time: Date; item: Donut } | undefined)[];
   setConveyor: (
-    updater: (
-      self: ({ time: Date; item: Donut } | undefined)[],
-    ) => ({ time: Date; item: Donut } | undefined)[],
+    conveyor:
+      | ({ time: Date; item: Donut } | undefined)[]
+      | ((
+          self: ({ time: Date; item: Donut } | undefined)[],
+        ) => ({ time: Date; item: Donut } | undefined)[]),
   ) => void;
 }
 
-interface packageTableStore {
-  packageTable: Packagig[];
-  setPackageTable: (updater: (self: Packagig[]) => Packagig[]) => void;
+interface PackageTableStore {
+  packageTable: Packaging[];
+  setPackageTable: (
+    packageTable: Packaging[] | ((self: Packaging[]) => Packaging[]),
+  ) => void;
 }
 
-const initialConveyor: undefined[] = Array(12).fill(undefined);
+const initialConveyor: (undefined | { time: Date; item: Donut })[] =
+  Array(12).fill(undefined);
 
-const useConveyorStore = create<conveyerStore>((set) => ({
+const useConveyorStore = create<ConveyerStore>((set) => ({
   conveyor: initialConveyor,
-  setConveyor: (updater) =>
-    set((state) => ({ conveyor: updater(state.conveyor) })),
+  setConveyor: (conveyor) =>
+    set((state) => ({
+      conveyor:
+        typeof conveyor === "function" ? conveyor(state.conveyor) : conveyor,
+    })),
 }));
 
-const usePackageTableStore = create<packageTableStore>((set) => ({
+const usePackageTableStore = create<PackageTableStore>((set) => ({
   packageTable: [],
-  setPackageTable: (updater) =>
-    set((state) => ({ packageTable: updater(state.packageTable) })),
+  setPackageTable: (packageTable) =>
+    set((state) => ({
+      packageTable:
+        typeof packageTable === "function"
+          ? packageTable(state.packageTable)
+          : packageTable,
+    })),
 }));
 
-export { useConveyorStore, usePackageTableStore };
+export { useConveyorStore, usePackageTableStore, initialConveyor };
