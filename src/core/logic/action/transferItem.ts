@@ -29,20 +29,32 @@ export default function useTransferItem() {
   } = useUpdateState();
 
   const moveToStove = useCallback(
-    (currentId: string) => {
+    (currentId: string, targetId: string) => {
       const index = getIndex(shapedDough, currentId);
-      if (!shapedDough[index] || isFull(stoveSlot)) return;
+      const changeIndex = getIndex(stoveSlot, currentId);
+      const stoveIndex = +targetId.replace(/\D/g, "");
 
-      setStoveSlot((self) => {
-        const updated = [...self];
-        const availableIndex = updated.findIndex((state) => !state);
-        updated[availableIndex] = shapedDough[index];
-        return updated;
-      });
+      if (isFull(stoveSlot) || stoveSlot[stoveIndex]) return;
 
-      updateShapeDough(index, undefined);
+      if (shapedDough[index]) {
+        setStoveSlot((self) => {
+          const updated = [...self];
+          updated[stoveIndex] = shapedDough[index];
+          return updated;
+        });
+
+        updateShapeDough(index, undefined);
+      } else if (stoveSlot[changeIndex]) {
+        setStoveSlot((self) => {
+          const updated = [...self];
+          updated[stoveIndex] = stoveSlot[changeIndex];
+          return updated;
+        });
+
+        updateStove(changeIndex, undefined);
+      }
     },
-    [shapedDough, setStoveSlot, updateShapeDough],
+    [shapedDough, stoveSlot, setStoveSlot, updateShapeDough, updateStove],
   );
 
   const moveToDrainingTray = useCallback(

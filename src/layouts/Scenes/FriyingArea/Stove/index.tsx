@@ -61,10 +61,7 @@ export default function Stove() {
   }, [time]);
 
   return (
-    <Droppable
-      id="stove"
-      className="relative flex h-3/5 w-11/12 justify-center"
-    >
+    <div className="relative flex h-3/5 w-11/12 justify-center">
       <Overlay src={StoveImage} className="h-[90%] min-w-[104%]" />
 
       <div className="relative flex h-3/4 w-full justify-center p-5">
@@ -73,7 +70,11 @@ export default function Stove() {
             const isFrying = fryingStates[index];
 
             return (
-              <div key={index} className="flex h-1/2 w-3/12">
+              <Droppable
+                key={index}
+                id={`stove-${index}`}
+                className="flex h-1/2 w-3/12"
+              >
                 {donut && (
                   <div
                     className={`${isFrying && "frying"} flex h-full w-full justify-center`}
@@ -85,11 +86,11 @@ export default function Stove() {
                     />
                   </div>
                 )}
-              </div>
+              </Droppable>
             );
           })}
         </div>
       </div>
-    </Droppable>
+    </div>
   );
 }

@@ -34,7 +34,7 @@ export default function Game() {
         if (currentId === "mold") shapeDough(targetId);
         break;
       case "stove":
-        moveToStove(currentId);
+        moveToStove(currentId, targetId);
         break;
       case "draining-tray":
         moveToDrainingTray(currentId, targetId);
