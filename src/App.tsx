@@ -17,9 +17,11 @@ export default function App() {
   }, []);
 
   return (
-    <main className="flex h-screen w-full flex-col items-center justify-center bg-slate-200">
-      <nav className="h-16 w-full bg-red-600"></nav>
-      <Scene />
+    <main className="flex h-screen w-full items-center justify-center">
+      <main className="flex h-[641px] max-h-[641px] min-h-[641px] w-[1366px] min-w-[1366px] max-w-[1366px] flex-col items-center justify-center bg-slate-200">
+        <nav className="h-16 w-full bg-red-600"></nav>
+        <Scene />
+      </main>
     </main>
   );
 }
