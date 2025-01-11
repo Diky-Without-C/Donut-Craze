@@ -8,6 +8,11 @@ import PeanutCrump from "./peanutCrump.svg";
 import OreoCrump from "./oreoCrump.svg";
 import RedVelvetCrump from "./redVelvetCrump.svg";
 
+import SpringkleLabel from "./Label springkle.svg";
+import PeanutLabel from "./Label peanut.svg";
+import OreoLabel from "./Label oreo.svg";
+import RedVelvetLabel from "./label redVelvet.svg";
+
 const toppingImages = {
   springkle: Springkle,
   peanut: Peanut,
@@ -22,4 +27,11 @@ const toppingCrumpImages = {
   redVelvet: RedVelvetCrump,
 };
 
-export { toppingImages, toppingCrumpImages };
+const labelImages = {
+  springkle: SpringkleLabel,
+  peanut: PeanutLabel,
+  oreo: OreoLabel,
+  redVelvet: RedVelvetLabel,
+};
+
+export { toppingImages, toppingCrumpImages, labelImages };

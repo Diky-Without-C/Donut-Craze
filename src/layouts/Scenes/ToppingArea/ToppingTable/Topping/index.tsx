@@ -1,7 +1,11 @@
 import { TOPPING_VARIANT } from "@constant/Donuts/donuts-detail.json";
 import { useSelectedTopping } from "@services/stores/toppingAreaStore";
 import Draggable from "@components/Draggable";
-import { toppingImages, toppingCrumpImages } from "@assets/toppingArea/config";
+import {
+  toppingImages,
+  toppingCrumpImages,
+  labelImages,
+} from "@assets/toppingArea/config";
 import Overlay from "@components/Overlay";
 
 export default function Topping() {
@@ -27,19 +31,24 @@ export default function Topping() {
             <Overlay
               src={toppingImages[topping.id as keyof typeof toppingImages]}
             />
+            <Overlay
+              src={labelImages[topping.id as keyof typeof labelImages]}
+              className="bottom-2 z-10 translate-x-5 rotate-6 scale-75"
+            />
 
             {selectedToppings[index] && (
               <Draggable
                 id={`topping-${index}`}
                 className="absolute -top-12 flex size-14 items-center justify-center"
               >
-                <div className="relative flex size-28 shrink-0 items-center justify-center">
+                <div className="relative z-10 flex size-28 shrink-0 items-center justify-center">
                   <Overlay
                     src={
                       toppingCrumpImages[
                         topping.id as keyof typeof toppingCrumpImages
                       ]
                     }
+                    className="translate-x-8"
                   />
                 </div>
               </Draggable>
