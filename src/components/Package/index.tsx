@@ -19,7 +19,7 @@ export default function Package({ pack, isOpen = false }: PackageProps) {
     <Draggable
       id={`package-${pack.id}`}
       style={{ height: `${height * size}rem`, width: `${width * size}rem` }}
-      className="relative flex items-center justify-center p-1"
+      className="relative flex items-center justify-center p-1 transition-none"
     >
       <Overlay
         src={isOpen ? image.open : image.closed}
