@@ -47,7 +47,7 @@ export default function Ticket() {
             <span className="-mt-4 mb-8 text-lg font-semibold">
               Pesanan #1 ({customers[0].name})
             </span>
-            <p className="text-center text-xl">{customers?.[0]?.dialog}</p>
+            <p className="text-justify text-xl">{customers?.[0]?.dialog}</p>
           </section>
         </main>
       )}
