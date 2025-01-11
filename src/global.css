@@ -5,16 +5,16 @@
 
 @keyframes rolling {
   0% {
-    transform: translateX(-2rem) translateY(15rem) rotate(90deg);
+    transform: translateX(-2rem) translateY(14.5rem) rotate(90deg);
   }
   20% {
-    transform: translateX(-10rem) translateY(15rem) rotate(90deg);
+    transform: translateX(-10rem) translateY(14.5rem) rotate(90deg);
   }
   50% {
-    transform: translateX(8rem) translateY(15rem) rotate(90deg);
+    transform: translateX(8rem) translateY(14.5rem) rotate(90deg);
   }
   70% {
-    transform: translateX(-14rem) translateY(15rem) rotate(90deg);
+    transform: translateX(-14rem) translateY(14.5rem) rotate(90deg);
   }
   100% {
     transform: translateX(0rem) translateY(0rem) rotate(0deg);
