@@ -8,10 +8,10 @@ import PeanutCrump from "./peanutCrump.svg";
 import OreoCrump from "./oreoCrump.svg";
 import RedVelvetCrump from "./redVelvetCrump.svg";
 
-import SpringkleLabel from "./Label springkle.svg";
-import PeanutLabel from "./Label peanut.svg";
-import OreoLabel from "./Label oreo.svg";
-import RedVelvetLabel from "./label redVelvet.svg";
+import SpringkleLabel from "./LabelSpringkle.svg";
+import PeanutLabel from "./LabelPeanut.svg";
+import OreoLabel from "./LabelOreo.svg";
+import RedVelvetLabel from "./labelRedVelvet.svg";
 
 const toppingImages = {
   springkle: Springkle,
