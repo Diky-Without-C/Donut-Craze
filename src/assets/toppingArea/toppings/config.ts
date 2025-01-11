@@ -11,7 +11,7 @@ import RedVelvetCrump from "./redVelvetCrump.svg";
 import SpringkleLabel from "./Label-Springkle.svg";
 import PeanutLabel from "./Label-Peanut.svg";
 import OreoLabel from "./Label-Oreo.svg";
-import RedVelvetLabel from "./label-RedVelvet.svg";
+import RedVelvetLabel from "./Label-RedVelvet.svg";
 
 const toppingImages = {
   springkle: Springkle,
