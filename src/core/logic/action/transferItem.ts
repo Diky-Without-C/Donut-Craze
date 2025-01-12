@@ -163,21 +163,39 @@ export default function useTransferItem() {
   const moveToConveyor = useCallback(
     (currentId: string) => {
       const index = getIndex(table, currentId);
-      const donut = table[index];
-      if (!donut || isFull(conveyor)) return;
+      const stockIndex = getIndex(stock, currentId);
 
-      setConveyor((self) => {
-        const updated = [...self];
-        const availableIndex = updated.findIndex((state) => !state);
-        updated[availableIndex] = donut
-          ? { time: new Date(), item: donut }
-          : undefined;
-        return updated;
-      });
+      if (isFull(conveyor)) return;
 
-      updateTable(index, undefined);
+      if (table[index]) {
+        const donut = table[index];
+
+        setConveyor((self) => {
+          const updated = [...self];
+          const availableIndex = updated.findIndex((state) => !state);
+          updated[availableIndex] = donut
+            ? { time: new Date(), item: donut }
+            : undefined;
+          return updated;
+        });
+
+        updateTable(index, undefined);
+      } else if (stock[stockIndex]) {
+        const donut = stock[stockIndex];
+
+        setConveyor((self) => {
+          const updated = [...self];
+          const availableIndex = updated.findIndex((state) => !state);
+          updated[availableIndex] = donut
+            ? { time: new Date(), item: donut }
+            : undefined;
+          return updated;
+        });
+
+        updateStock(stockIndex, undefined);
+      }
     },
-    [table, setConveyor, updateTable],
+    [table, stock, setConveyor, updateTable, updateStock],
   );
 
   return {
