@@ -8,16 +8,25 @@ import ConveyorTrail from "./Trail";
 
 export default function Conveyor() {
   const { conveyor } = useConveyorStore();
-  const [conveyorStates, setConveyorStates] = useState(() =>
+  const [conveyorTrails, setConveyorTrails] = useState<typeof conveyor>(
     Array(conveyor.length).fill(undefined),
+  );
+  const [conveyorStates, setConveyorStates] = useState<boolean[]>(
+    Array(conveyor.length).fill(false),
   );
   const [positions, setPositions] = useState<number[]>(
     Array(conveyor.length).fill(0),
   );
 
+  const updateConveyorState = (index: number, isHold: boolean) => {
+    setConveyorStates((self) =>
+      self.map((state, i) => (i === index ? isHold : state)),
+    );
+  };
+
   useEffect(() => {
     if (needsStateSync()) {
-      updateConveyorStates();
+      updateConveyorTrails();
     }
   }, [conveyor]);
 
@@ -32,15 +41,15 @@ export default function Conveyor() {
     animationFrameId = requestAnimationFrame(animate);
 
     return () => cancelAnimationFrame(animationFrameId);
-  }, [positions, conveyorStates]);
+  }, [positions, conveyorTrails]);
 
   const needsStateSync = () => {
     const activeItems = conveyor.filter(Boolean).length;
-    const activeStates = conveyorStates.filter(Boolean).length;
+    const activeStates = conveyorTrails.filter(Boolean).length;
     return activeItems !== activeStates;
   };
 
-  const updateConveyorStates = () => {
+  const updateConveyorTrails = () => {
     const sortedConveyor = [...conveyor]
       .sort((a, b) => {
         if (!a || !b) return -1;
@@ -48,13 +57,18 @@ export default function Conveyor() {
       })
       .reverse();
 
-    setConveyorStates(sortedConveyor);
+    setConveyorTrails(sortedConveyor);
   };
 
   const updatePositions = () => {
     setPositions((prevPositions) =>
       prevPositions.map((position, index) => {
         const distance = (calculateDistance(index) * 100) / conveyor.length;
+
+        if (conveyorStates[index]) {
+          return position;
+        }
+
         return Math.min(position + 0.2, distance);
       }),
     );
@@ -62,7 +76,7 @@ export default function Conveyor() {
 
   const calculateDistance = (currentIndex: number) => {
     const currentItem = conveyor[currentIndex];
-    const targetIndex = conveyorStates.findIndex(
+    const targetIndex = conveyorTrails.findIndex(
       (state) => state?.item.id === currentItem?.item.id,
     );
     return currentItem ? targetIndex : 0;
@@ -87,7 +101,13 @@ export default function Conveyor() {
             }}
             className="absolute flex h-full w-1/12"
           >
-            {state && <Donut donut={state.item} />}
+            {state && (
+              <Donut
+                onDraggingStart={() => updateConveyorState(index, true)}
+                onDraggingEnd={() => updateConveyorState(index, false)}
+                donut={state.item}
+              />
+            )}
           </div>
         ))}
       </Droppable>
