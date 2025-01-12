@@ -40,7 +40,7 @@ export default function Scene() {
     <DndContext onDragEnd={handleDragEnd} onDragMove={handleDragMove}>
       <section
         ref={sceneRef}
-        className="h-[calc(100%-4rem)] w-full overflow-hidden"
+        className="relative h-[calc(100%-4rem)] w-full overflow-hidden"
       >
         <section className="relative h-full w-full">
           <CashierArea />
