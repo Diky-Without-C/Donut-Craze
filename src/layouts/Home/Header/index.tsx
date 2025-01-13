@@ -1,3 +1,10 @@
 export default function Header() {
-  return <h1 className="text-[5rem] font-bold text-red-400">Donut Craze</h1>;
+  return (
+    <h1
+      style={{ fontFamily: "'capuche', sans-serif" }}
+      className="text-[5rem] font-bold text-[#b22a2a] drop-shadow-md"
+    >
+      Donut Craze
+    </h1>
+  );
 }

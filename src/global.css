@@ -39,3 +39,10 @@
     opacity: 1;
   }
 }
+
+@font-face {
+  font-family: "capuche";
+  src: url("/src/assets/fonts/Capuche.otf");
+  font-weight: normal;
+  font-style: normal;
+}
