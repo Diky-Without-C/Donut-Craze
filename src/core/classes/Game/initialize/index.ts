@@ -27,6 +27,7 @@ import useCustomersStore from "@services/stores/customersStore";
 import { customersList } from "@constant/Customers/customers-list.json";
 import Customer from "@core/classes/Customers";
 import suffle from "@utils/shuffle";
+import { level } from "@constant/Game/level-data.json";
 
 export default function useInitialize() {
   const stores = {
@@ -57,11 +58,21 @@ export default function useInitialize() {
   };
 
   const init = () => {
-    stores.setCustomer(() =>
-      suffle(customersList)
-        .slice(0, 8)
-        .map((customer) => new Customer(customer as Customer)),
-    );
+    const initializeCustomers = () => {
+      const levels = suffle(level["1"]);
+      const shuffledCustomers = suffle(customersList).slice(0, levels.length);
+
+      const customers = shuffledCustomers.map((customer, index) => {
+        return new Customer({
+          ...customer,
+          difficulty: levels[index],
+        } as Customer);
+      });
+
+      return customers;
+    };
+
+    stores.setCustomer(initializeCustomers);
 
     stores.setCashierPackages(initialValues.setCashierPackages);
     stores.setDough(initialValues.setDough);

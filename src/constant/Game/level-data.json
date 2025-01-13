@@ -1,0 +1,83 @@
+{
+  "level": {
+    "1": ["easy", "easy", "easy", "easy", "easy"],
+    "2": ["easy", "easy", "easy", "easy", "medium"],
+    "3": ["easy", "easy", "easy", "medium", "medium"],
+    "4": ["easy", "easy", "medium", "medium", "medium"],
+    "5": ["easy", "medium", "medium", "medium", "medium"],
+    "6": ["easy", "easy", "easy", "easy", "medium", "medium", "medium", "hard"],
+    "7": ["easy", "easy", "easy", "easy", "medium", "medium", "hard", "hard"],
+    "8": ["easy", "easy", "easy", "medium", "medium", "medium", "hard", "hard"],
+    "9": ["easy", "easy", "medium", "medium", "medium", "hard", "hard", "hard"],
+    "10": [
+      "easy",
+      "medium",
+      "medium",
+      "medium",
+      "medium",
+      "hard",
+      "hard",
+      "hard"
+    ],
+    "11": [
+      "easy",
+      "easy",
+      "medium",
+      "medium",
+      "medium",
+      "medium",
+      "hard",
+      "hard",
+      "hard",
+      "hard"
+    ],
+    "12": [
+      "easy",
+      "easy",
+      "medium",
+      "medium",
+      "medium",
+      "hard",
+      "hard",
+      "hard",
+      "hard",
+      "hard"
+    ],
+    "13": [
+      "easy",
+      "medium",
+      "medium",
+      "medium",
+      "medium",
+      "hard",
+      "hard",
+      "hard",
+      "hard",
+      "hard"
+    ],
+    "14": [
+      "medium",
+      "medium",
+      "medium",
+      "medium",
+      "medium",
+      "hard",
+      "hard",
+      "hard",
+      "hard",
+      "hard"
+    ],
+    "15": [
+      "medium",
+      "medium",
+      "medium",
+      "medium",
+      "hard",
+      "hard",
+      "hard",
+      "hard",
+      "hard",
+      "hard"
+    ]
+  }
+}

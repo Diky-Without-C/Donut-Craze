@@ -1,4 +1,4 @@
-import { difficulty } from "@constant/Game/game-detail.json";
+import { difficulty as difficulties } from "@constant/Game/game-detail.json";
 import suffle from "@utils/shuffle";
 import { CustomerTypes as Type } from "./cutomers.type";
 import createDialog from "./createDialog";
@@ -10,6 +10,7 @@ interface CustomerType {
   name: string;
   type: Type;
   favorite: OrderType;
+  difficulty: keyof typeof difficulties;
 }
 
 type OrderType = { glaze?: string; topping?: string; icing?: string }[];
@@ -18,18 +19,18 @@ export default class Customer {
   id: string;
   name: string;
   type: Type;
-  difficulty: keyof typeof difficulty;
+  difficulty: keyof typeof difficulties;
   favorite: OrderType;
   orders: Donut[];
   dialog: string;
   totalPrice: number;
   orderStack: (Donut | undefined)[] = [];
 
-  constructor({ name, type, favorite }: CustomerType) {
+  constructor({ name, type, favorite, difficulty }: CustomerType) {
     this.id = this.createId();
     this.name = name;
     this.type = type;
-    this.difficulty = "hard";
+    this.difficulty = difficulty;
     this.favorite = favorite;
     this.orders = this.getOrders();
     this.dialog = this.getDialog();

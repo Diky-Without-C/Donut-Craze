@@ -9,9 +9,8 @@
       "maxVariant": 2
     },
     "medium": {
-      "qty": [2, 2, 3, 4],
+      "qty": [3, 4],
       "allowedOrders": [
-        { "glaze": false, "topping": false, "icing": false },
         { "glaze": true, "topping": false, "icing": false },
         { "glaze": true, "topping": true, "icing": false },
         { "glaze": true, "topping": false, "icing": true }
@@ -19,10 +18,8 @@
       "maxVariant": 3
     },
     "hard": {
-      "qty": [1, 2, 3, 4, 5, 6],
+      "qty": [5, 6],
       "allowedOrders": [
-        { "glaze": false, "topping": false, "icing": false },
-        { "glaze": true, "topping": false, "icing": false },
         { "glaze": true, "topping": true, "icing": false },
         { "glaze": true, "topping": false, "icing": true },
         { "glaze": true, "icing": true, "topping": true }
