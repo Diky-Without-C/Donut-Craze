@@ -11,7 +11,7 @@ const useGameStore = create<GameState>((set) => {
 
   const proxiedGame = new Proxy(game, {
     set(target, prop, value) {
-      target[prop as keyof Game] = value;
+      (target as any)[prop as keyof Game] = value;
       set({ game: target });
       return true;
     },
