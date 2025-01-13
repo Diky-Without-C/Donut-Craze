@@ -1,13 +1,13 @@
-import Agus from "./Agus.png";
-import Amel from "./Amel.png";
-import Andi from "./Andi.png";
-import Damar from "./Damar.png";
-import Dina from "./Dina.png";
-import Doni from "./Doni.png";
-import Gea from "./Gea.png";
-import Jihan from "./jihan.png";
-import Sania from "./sania.png";
-import Tania from "./Tania.png";
+import Agus from "./Agus.svg";
+import Amel from "./Amel.svg";
+import Andi from "./Andi.svg";
+import Damar from "./Damar.svg";
+import Dina from "./Dina.svg";
+import Doni from "./Doni.svg";
+import Gea from "./Gea.svg";
+import Jihan from "./jihan.svg";
+import Sania from "./sania.svg";
+import Tania from "./Tania.svg";
 
 const CharacterImages = {
   Agus,

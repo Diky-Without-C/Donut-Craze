@@ -8,8 +8,8 @@ import PeanutCrump from "./peanutCrump.svg";
 import OreoCrump from "./oreoCrump.svg";
 import RedVelvetCrump from "./redVelvetCrump.svg";
 
-import SpringkleLabel from "./Label-Springkle.svg";
-import PeanutLabel from "./Label-Peanut.svg";
+import SpringkleLabel from "./Label-meses.svg";
+import PeanutLabel from "./Label-kacang .svg";
 import OreoLabel from "./Label-Oreo.svg";
 import RedVelvetLabel from "./Label-RedVelvet.svg";
 
