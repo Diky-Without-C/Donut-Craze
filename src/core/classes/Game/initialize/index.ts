@@ -28,8 +28,11 @@ import { customersList } from "@constant/Customers/customers-list.json";
 import Customer from "@core/classes/Customers";
 import suffle from "@utils/shuffle";
 import { level } from "@constant/Game/level-data.json";
+import useLocalStorage from "@hooks/useLocalStorage";
 
 export default function useInitialize() {
+  const [currentLevel] = useLocalStorage("donut-craze-level", 1);
+
   const stores = {
     setCustomer: useCustomersStore().setCustomer,
     setCashierPackages: useCashierPackStore().setCashierPackages,
@@ -59,7 +62,7 @@ export default function useInitialize() {
 
   const init = () => {
     const initializeCustomers = () => {
-      const levels = suffle(level["1"]);
+      const levels = suffle(level[String(currentLevel) as keyof typeof level]);
       const shuffledCustomers = suffle(customersList).slice(0, levels.length);
 
       const customers = shuffledCustomers.map((customer, index) => {

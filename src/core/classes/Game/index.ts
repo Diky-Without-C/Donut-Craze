@@ -1,8 +1,10 @@
 export default class Game {
   isStart: boolean;
+  level: number;
 
   constructor() {
     this.isStart = false;
+    this.level = 1;
   }
 
   public start() {
@@ -11,5 +13,9 @@ export default class Game {
 
   public end() {
     this.isStart = false;
+  }
+
+  public setLevel(level: number) {
+    this.level = level;
   }
 }
