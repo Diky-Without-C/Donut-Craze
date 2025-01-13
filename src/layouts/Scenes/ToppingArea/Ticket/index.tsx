@@ -2,10 +2,17 @@ import { useState, useRef, useEffect } from "react";
 import useCustomersStore from "@services/stores/customersStore";
 import Overlay from "@components/Overlay";
 import { TicketImage } from "@assets/toppingArea/config";
+import { level } from "@constant/Game/level-data.json";
+import useLocalStorage from "@hooks/useLocalStorage";
 
 export default function Ticket() {
   const [isActive, setIsActive] = useState(false);
   const { customers } = useCustomersStore();
+  const [currentLevel] = useLocalStorage("donut-craze-level", 1);
+  const order =
+    level[String(currentLevel) as keyof typeof level].length -
+    customers.length +
+    1;
 
   const ticketRef = useRef<HTMLDivElement>(null);
 
@@ -45,7 +52,7 @@ export default function Ticket() {
           <section className="relative flex h-full w-full flex-col p-8 font-mono">
             <CloseButton onClose={() => setIsActive(false)} />
             <span className="-mt-4 mb-8 text-lg font-semibold">
-              Pesanan #1 ({customers[0].name})
+              Pesanan #{order} ({customers[0].name})
             </span>
             <p className="text-justify text-xl">{customers?.[0]?.dialog}</p>
           </section>
