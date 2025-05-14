@@ -38,7 +38,7 @@ export default function getOrderDialog(self: Customer) {
         parts.push("tanpa topping");
       }
     } else {
-      parts.push("donat biasa");
+      parts.push("donat original");
     }
 
     if (topping && icing) {
