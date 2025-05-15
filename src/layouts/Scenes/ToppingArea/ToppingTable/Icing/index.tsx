@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ICING_VARIANT } from "@constant/Donuts/donuts-detail.json";
 import Draggable from "@components/Draggable";
 import { icingImages } from "@assets/toppingArea/config";
@@ -6,6 +6,20 @@ import Overlay from "@components/Overlay";
 
 export default function Icing() {
   const [selected, setSelected] = useState<number | null>(null);
+
+    useEffect(() => {
+    const handleGlobalEnd = () => {
+      if (selected !== null) {
+        setSelected(null);
+      }
+    };
+
+    window.addEventListener("mouseup", handleGlobalEnd);
+
+    return () => {
+      window.removeEventListener("mouseup", handleGlobalEnd);
+    };
+  }, [selected]);
 
   return (
     <div className="relative -top-20 flex h-1/2 w-full items-center justify-around">
