@@ -1,6 +1,6 @@
 import Droppable from "@components/Droppable";
 
-interface DoughGridsProps {
+interface HintsProps {
   grid: {
     isVisible: boolean;
     isMolded: boolean;
@@ -8,7 +8,7 @@ interface DoughGridsProps {
   isDelay: boolean;
 }
 
-export default function DoughGrids({ grid, isDelay }: DoughGridsProps) {
+export default function Hints({ grid, isDelay }: HintsProps) {
   return (
     <>
       {grid.map(({ isVisible, isMolded }, index) => {

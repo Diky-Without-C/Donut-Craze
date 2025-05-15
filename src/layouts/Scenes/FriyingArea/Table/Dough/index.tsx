@@ -3,7 +3,7 @@ import { DOUGH } from "@constant/Donuts/donuts-detail.json";
 import { useDoughStore } from "@services/stores/fryingAreaStore";
 import Draggable from "@components/Draggable";
 import Droppable from "@components/Droppable";
-import DoughGrids from "./Grid";
+import DoughHints from "./Hints";
 import ShapedDough from "./ShapedDough";
 
 const { color_variant } = DOUGH;
@@ -42,7 +42,7 @@ export default function Dough() {
       >
         {isFlattened && (
           <>
-            <DoughGrids grid={grid} isDelay={isDelay} />
+            <DoughHints grid={grid} isDelay={isDelay} />
             <ShapedDough />
           </>
         )}

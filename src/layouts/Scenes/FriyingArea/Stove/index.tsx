@@ -73,7 +73,7 @@ export default function Stove() {
               <Droppable
                 key={index}
                 id={`stove-${index}`}
-                className="flex h-1/2 w-3/12"
+                className="flex h-1/2 w-3/12 items-center justify-center"
               >
                 {donut && (
                   <div
