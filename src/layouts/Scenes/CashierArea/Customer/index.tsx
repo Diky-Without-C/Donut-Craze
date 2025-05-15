@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import useCustomersStore from "@services/stores/customersStore";
-import { CharacterImages } from "@assets/CashierArea/config";
+import { CharacterImages } from "@assets/Character/config";
 import Character from "./Character";
 import Dialog from "./Character/Dialog";
 

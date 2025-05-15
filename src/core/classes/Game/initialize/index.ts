@@ -24,11 +24,8 @@ import {
 } from "@services/stores/toppingAreaStore";
 import useCustomersStore from "@services/stores/customersStore";
 
-import { customersList } from "@constant/Customers/customers-list.json";
-import Customer from "@core/classes/Customers";
-import suffle from "@utils/shuffle";
-import { level } from "@constant/Game/level-data.json";
 import useLocalStorage from "@hooks/useLocalStorage";
+import initializeCustomers from "./initializeCustomers";
 
 export default function useInitialize() {
   const [currentLevel] = useLocalStorage("donut-craze-level", 1);
@@ -61,21 +58,7 @@ export default function useInitialize() {
   };
 
   const init = () => {
-    const initializeCustomers = () => {
-      const levels = suffle(level[String(currentLevel) as keyof typeof level]);
-      const shuffledCustomers = suffle(customersList).slice(0, levels.length);
-
-      const customers = shuffledCustomers.map((customer, index) => {
-        return new Customer({
-          ...customer,
-          difficulty: levels[index],
-        } as Customer);
-      });
-
-      return customers;
-    };
-
-    stores.setCustomer(initializeCustomers);
+    stores.setCustomer(initializeCustomers(String(currentLevel)));
 
     stores.setCashierPackages(initialValues.setCashierPackages);
     stores.setDough(initialValues.setDough);

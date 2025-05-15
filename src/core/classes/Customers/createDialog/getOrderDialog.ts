@@ -4,67 +4,71 @@ import countSameOrder from "./countSameOrder";
 import Customer from "..";
 
 export default function getOrderDialog(self: Customer) {
-  const sameOrder = countSameOrder(self.orders);
+  const groupedOrders = countSameOrder(self.orders);
   const totalOrders = self.orders.length;
 
-  function buildOrderDescription(
+  function describeOrder(
     order: (typeof self.orders)[number],
     count: number | null = null,
-    isHalf: boolean = false,
-    current: number,
+    isHalfPortion: boolean = false,
+    index: number,
   ): string {
     const { glaze, topping, icing } = order;
-    const parts: string[] = [];
+    const description: string[] = [];
 
-    if (current === 0 && totalOrders > 3 && !isHalf && sameOrder.length > 1) {
-      parts.push(`${totalOrders} donat.`);
+    const showIntro =
+      index === 0 &&
+      !isHalfPortion &&
+      totalOrders > 3 &&
+      groupedOrders.length > 1;
+
+    if (showIntro) {
+      description.push(`${totalOrders} donat.`);
     }
 
-    if (isHalf) {
-      if (totalOrders % 2 === 0) {
-        parts.push(
-          current === 0 ? `${totalOrders} donat, setengah` : "setengahnya lagi",
-        );
-      } else {
-        parts.push(current === 0 ? `${totalOrders} donat,` : "sisanya");
-      }
+    if (isHalfPortion) {
+      const isEven = totalOrders % 2 === 0;
+      description.push(
+        index === 0
+          ? `${totalOrders} donat, ${isEven ? "setengah" : ""}`
+          : isEven
+            ? "setengahnya lagi"
+            : "sisanya",
+      );
     } else if (count && count > 1) {
-      parts.push(String(count));
+      description.push(String(count));
     }
 
+    // Donut type
     if (glaze) {
-      parts.push(`donat ${glaze}`);
+      description.push(`donat ${glaze}`);
       if (!topping && !icing && chance(1 / 4)) {
-        parts.push("tanpa topping");
+        description.push("tanpa topping");
       }
     } else {
-      parts.push("donat original");
+      description.push("donat original");
     }
 
+    // Extras
     if (topping && icing) {
-      parts.push(`dengan ${icing} dan toping ${topping}`);
+      description.push(`dengan ${icing} dan toping ${topping}`);
     } else if (topping) {
-      parts.push(`dengan ${topping}`);
+      description.push(`dengan ${topping}`);
     } else if (icing) {
-      parts.push(`dengan ${icing}`);
+      description.push(`dengan ${icing}`);
     }
 
-    return parts.join(" ");
+    return description.join(" ");
   }
 
-  let orderDialog = sameOrder.map(({ order, count }, index) =>
-    buildOrderDescription(order, count, false, index),
-  );
+  function generateDialog(): string[] {
+    const useHalfPortion =
+      chance(1 / 2) && groupedOrders.length === 2 && groupedOrders[0].count > 1;
 
-  if (chance(1 / 2)) {
-    if (sameOrder.length === 2 && sameOrder[0].count > 1) {
-      orderDialog = sameOrder.map(({ order }, index) =>
-        buildOrderDescription(order, index, true, index),
-      );
-    }
+    return groupedOrders.map(({ order, count }, index) =>
+      describeOrder(order, count, useHalfPortion, index),
+    );
   }
 
-  const dialog = orderDialog;
-
-  return formatOrders(dialog);
+  return formatOrders(generateDialog());
 }

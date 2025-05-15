@@ -1,6 +1,6 @@
 import { difficulty as difficulties } from "@constant/Game/game-detail.json";
 import suffle from "@utils/shuffle";
-import { CustomerTypes as Type } from "./cutomers.type";
+import { CustomerTypes as Type } from "./cutomersType";
 import createDialog from "./createDialog";
 import makeOrders from "./makeOrders";
 import Donut from "../Donut";
@@ -16,7 +16,7 @@ interface CustomerType {
 type OrderType = { glaze?: string; topping?: string; icing?: string }[];
 
 export default class Customer {
-  id: string;
+  readonly id: string;
   name: string;
   type: Type;
   difficulty: keyof typeof difficulties;
@@ -52,7 +52,9 @@ export default class Customer {
   }
 
   private getTotalPrice() {
-    return this.orders.map((order) => order.price).reduce((a, b) => a + b, 0);
+    return this.orders
+      .map((order) => order.price)
+      .reduce((prev, curr) => prev + curr, 0);
   }
 
   public checkOrders({ donuts }: Packaging) {

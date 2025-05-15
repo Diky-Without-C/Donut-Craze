@@ -18,7 +18,7 @@ export default function usePackageAction() {
     (currentId: string) => {
       if (packageTable[0] || !currentId.includes("package")) return;
 
-      const size = +currentId.replace(/\D/g, "") as PackagigType["size"];
+      const size = Number(currentId.replace(/\D/g, "")) as PackagigType["size"];
       updatePackTable(0, new Packaging({ size }));
     },
     [updatePackTable, packageTable],
@@ -27,7 +27,7 @@ export default function usePackageAction() {
   const moveToPack = useCallback(
     (currentId: string, targetId: string) => {
       const currentIndex = getIndex(conveyor, currentId);
-      const targetIndex = +targetId.replace(/\D/g, "");
+      const targetIndex = Number(targetId.replace(/\D/g, ""));
 
       const donut = conveyor[currentIndex]?.item;
       if (!packageTable[0]) return;

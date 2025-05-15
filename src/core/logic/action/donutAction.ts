@@ -27,7 +27,7 @@ export default function useDonutAction() {
 
         if (areAllMolded) return self;
 
-        const index = +targetId.replace(/\D/g, "");
+        const index = Number(targetId.replace(/\D/g, ""));
         if (updated[index]) updated[index].isMolded = true;
 
         updateShapeDough(index, new Donut({}));
@@ -39,7 +39,7 @@ export default function useDonutAction() {
 
   const addGlaze = useCallback(
     (currentId: string, targetId: string) => {
-      const glazeIndex = +targetId.replace(/\D/g, "");
+      const glazeIndex = Number(targetId.replace(/\D/g, ""));
       const tableIndex = getIndex(table, currentId);
       if (!table[tableIndex] || table[tableIndex].glaze) return;
 
@@ -51,7 +51,7 @@ export default function useDonutAction() {
   const addIcing = useCallback(
     (currentId: string, targetId: string) => {
       const icingIndex = +currentId.replace(/\D/g, "");
-      const tableIndex = +targetId.replace(/\D/g, "");
+      const tableIndex = Number(targetId.replace(/\D/g, ""));
       const donut = table[tableIndex];
       if (!donut || donut.icing || !donut.glaze) return;
 
@@ -63,7 +63,7 @@ export default function useDonutAction() {
   const addTopping = useCallback(
     (currentId: string, targetId: string) => {
       const topping = +currentId.replace(/\D/g, "");
-      const tableIndex = +targetId.replace(/\D/g, "");
+      const tableIndex = Number(targetId.replace(/\D/g, ""));
       const donut = table[tableIndex];
       if (!donut || donut.topping || !donut.glaze) return;
 

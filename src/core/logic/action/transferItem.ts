@@ -32,7 +32,7 @@ export default function useTransferItem() {
     (currentId: string, targetId: string) => {
       const index = getIndex(shapedDough, currentId);
       const changeIndex = getIndex(stoveSlot, currentId);
-      const stoveIndex = +targetId.replace(/\D/g, "");
+      const stoveIndex = Number(targetId.replace(/\D/g, ""));
 
       if (isFull(stoveSlot) || stoveSlot[stoveIndex]) return;
 
@@ -61,7 +61,7 @@ export default function useTransferItem() {
     (currentId: string, targetId: string) => {
       const index = getIndex(stoveSlot, currentId);
       const changeIndex = getIndex(drainingTray, currentId);
-      const drainingIndex = +targetId.replace(/\D/g, "");
+      const drainingIndex = Number(targetId.replace(/\D/g, ""));
 
       if (isFull(drainingTray) || drainingTray[drainingIndex]) return;
 
@@ -96,7 +96,7 @@ export default function useTransferItem() {
     (currentId: string, targetId: string) => {
       const drainingIndex = getIndex(drainingTray, currentId);
       const stoveIndex = getIndex(stoveSlot, currentId);
-      const stockIndex = +targetId.replace(/\D/g, "");
+      const stockIndex = Number(targetId.replace(/\D/g, ""));
       const changeIndex = getIndex(stock, currentId);
 
       if (isFull(stock) || stock[stockIndex]) return;
@@ -139,7 +139,7 @@ export default function useTransferItem() {
 
   const moveToTable = useCallback(
     (currentId: string, targetId: string) => {
-      const tableIndex = +targetId.replace(/\D/g, "");
+      const tableIndex = Number(targetId.replace(/\D/g, ""));
       const stockIndex = getIndex(stock, currentId);
       const drainingIndex = getIndex(drainingTray, currentId);
       const changeIndex = getIndex(table, currentId);

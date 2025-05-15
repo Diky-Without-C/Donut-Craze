@@ -5,7 +5,12 @@ import {
   ICING_VARIANT,
 } from "@constant/Donuts/donuts-detail.json";
 import suffle from "@utils/shuffle";
-import { DonutType } from "./donut.type";
+
+interface DonutType {
+  glaze?: string;
+  topping?: string;
+  icing?: string;
+}
 
 export default class Donut {
   readonly id: string;
@@ -31,10 +36,9 @@ export default class Donut {
   }
 
   private createId() {
-    const char = "abcdefghijklmopqrstuvwxyz1234567890";
-    return suffle([...char])
-      .slice(0, 8)
-      .join("");
+    const char = [..."abcdefghijklmopqrstuvwxyz1234567890"];
+    const randomChars = suffle(char).join("");
+    return randomChars.slice(0, 8);
   }
 
   private calculatePrice() {
