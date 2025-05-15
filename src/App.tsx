@@ -16,7 +16,7 @@ export default function App() {
 
   return (
     <main className="flex h-screen w-full items-center justify-center">
-      <main className="flex h-[641px] max-h-[641px] min-h-[641px] w-[1366px] min-w-[1366px] max-w-[1366px] flex-col items-center justify-center bg-slate-200">
+      <main className="flex h-[39.5rem] max-h-[39.5rem] min-h-[39.5rem] w-[85rem] min-w-[85rem] max-w-[85rem] flex-col items-center justify-center bg-slate-200">
         {!game.isStart ? (
           <Home />
         ) : (
