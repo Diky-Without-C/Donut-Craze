@@ -1,6 +1,7 @@
 import chance from "@utils/createProbability";
 import formatOrders from "./formatOrders";
 import countSameOrder from "./countSameOrder";
+import numberToText from "./numberToText";
 import Customer from "..";
 
 export default function getOrderDialog(self: Customer) {
@@ -36,7 +37,7 @@ export default function getOrderDialog(self: Customer) {
             : "sisanya",
       );
     } else if (count && count > 1) {
-      description.push(String(count));
+      description.push(numberToText(count));
     }
 
     // Donut type
