@@ -46,3 +46,10 @@
   font-weight: normal;
   font-style: normal;
 }
+
+.ceramic-pattern {
+  background-color: #fcfff9;
+  opacity: 0.8;
+  background-image:  linear-gradient(#cbcbd5 3.3000000000000003px, transparent 3.3000000000000003px), linear-gradient(to right, #cbcbd5 3.3000000000000003px, #fcfff9 3.3000000000000003px);
+  background-size: 66px 66px;
+}

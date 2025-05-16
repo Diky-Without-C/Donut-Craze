@@ -49,7 +49,7 @@ export default function Scene() {
           ref={pantryAreaRef}
           className="scrollbar relative flex h-full w-full overflow-x-auto"
         >
-          <section className="absolute flex min-h-full w-[300%] overflow-hidden">
+          <section className="ceramic-pattern absolute flex min-h-full w-[300%] overflow-hidden">
             <FriyingArea />
             <ToppingArea />
             <PackingArea />
