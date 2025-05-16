@@ -1,11 +1,11 @@
 import Customer from "../Customers";
-import Donut from "../Donut";
+import Packaging from "../Packaging";
 
 export default class Game {
   isStart: boolean;
   level: number;
   customers: Customer[];
-  completedOrders: Donut[];
+  completedOrders: Packaging[];
 
   constructor() {
     this.isStart = false;

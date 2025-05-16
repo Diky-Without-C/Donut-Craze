@@ -23,7 +23,6 @@ export default class Customer {
   favorite: OrderType;
   orders: Donut[];
   dialog: string;
-  totalPrice: number;
   orderStack: (Donut | undefined)[] = [];
 
   constructor({ name, type, favorite, difficulty }: CustomerType) {
@@ -34,7 +33,6 @@ export default class Customer {
     this.favorite = favorite;
     this.orders = this.getOrders();
     this.dialog = this.getDialog();
-    this.totalPrice = this.getTotalPrice();
   }
 
   private createId() {
@@ -51,20 +49,29 @@ export default class Customer {
     return makeOrders(this);
   }
 
-  private getTotalPrice() {
-    return this.orders
-      .map((order) => order.price)
-      .reduce((prev, curr) => prev + curr, 0);
-  }
-
   public checkOrders({ donuts }: Packaging) {
     this.orderStack = [...this.orderStack, ...donuts];
     const validStack = this.orderStack.filter((item) => item !== undefined);
 
-    if (validStack.length >= this.orders.length) {
-      return true;
-    }
+    const orderWithoutId = this.orders.map((order) => {
+      const { id, side, ...orderWithoutId } = order;
+      return JSON.stringify(orderWithoutId);
+    });
 
-    return false;
+    const stackWithoutId = validStack.map((donut) => {
+      const { id, side, ...donutWithoutId } = donut;
+      return JSON.stringify(donutWithoutId);
+    });
+
+    const isEveryElementInArray = (main: string[], sub: string[]) =>
+      sub.every((element) => main.includes(element));
+
+    console.log(orderWithoutId, stackWithoutId);
+    console.log(isEveryElementInArray(orderWithoutId, stackWithoutId));
+
+    return {
+      isOrderCorrect: isEveryElementInArray(orderWithoutId, stackWithoutId),
+      isOrderAmountCorrect: validStack.length === this.orders.length,
+    };
   }
 }

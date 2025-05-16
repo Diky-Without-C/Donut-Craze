@@ -10,35 +10,40 @@ export default function useCustomerAction() {
   const [currentLevel, setLevel] = useLocalStorage("donut-craze-level", 1);
 
   const serveOrder = useCallback(
-    (currentId: string) => {
+    (packageId: string) => {
       const currentCustomer = game.customers[0];
-      const index = cashierPackages.findIndex((item) =>
-        currentId.includes(item.id),
+      const packageIndex = cashierPackages.findIndex((pkg) =>
+        packageId.includes(pkg.id),
       );
 
-      const selectedPackage = cashierPackages[index];
-      selectedPackage.donuts.forEach((donut) => {
-        if (donut) game.completedOrders.push(donut);
-      });
+      if (packageIndex === -1) return;
 
-      const isOrderCompleted = currentCustomer.checkOrders(selectedPackage);
+      const selectedPackage = cashierPackages[packageIndex];
+      game.completedOrders.push(selectedPackage);
 
-      if (isOrderCompleted) {
-        game.customers = game.customers.slice(1) || [];
+      const { isOrderCorrect, isOrderAmountCorrect } =
+        currentCustomer.checkOrders(selectedPackage);
 
-        if (
-          game.customers.length === 1 &&
-          currentLevel < Object.keys(level).length
-        ) {
-          setLevel(currentLevel + 1);
+      if (isOrderCorrect) {
+        if (isOrderAmountCorrect) {
+          game.customers = game.customers.slice(1);
 
-          game.setLevel(currentLevel + 1);
+          const isLastCustomer = game.customers.length === 1;
+          const hasNextLevel = currentLevel < Object.keys(level).length;
+
+          if (isLastCustomer && hasNextLevel) {
+            const nextLevel = currentLevel + 1;
+            setLevel(nextLevel);
+            game.setLevel(nextLevel);
+          }
         }
+      } else {
+        game.end();
       }
 
-      setCashierPackages((self) => self.filter((_, i) => i !== index));
+      setCashierPackages((prev) => prev.filter((_, i) => i !== packageIndex));
     },
-    [game.customers, cashierPackages, setCashierPackages],
+    [game, cashierPackages, setCashierPackages, currentLevel, setLevel],
   );
 
   return { serveOrder };
