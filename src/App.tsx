@@ -21,7 +21,7 @@ export default function App() {
           <Home />
         ) : (
           <>
-            <nav className="h-16 w-full bg-red-600"></nav>
+            <nav className="h-16 w-full bg-slate-600"></nav>
             <Scene />
           </>
         )}
