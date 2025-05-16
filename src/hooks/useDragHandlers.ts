@@ -3,7 +3,7 @@ import { DragEndEvent, DragMoveEvent } from "@dnd-kit/core";
 import game from "@core/logic/main";
 
 export default function useDragHandlers() {
-  const { updateVisibleGrid, updateDonut } = game();
+  const { updateVisibleGrid, updateGame } = game();
 
   const handleDragEnd = useCallback(
     ({ active, over }: DragEndEvent) => {
@@ -13,10 +13,10 @@ export default function useDragHandlers() {
       const currentId = active.id as string;
       const targetId = over.id as string;
 
-      updateDonut(currentId, targetId);
+      updateGame(currentId, targetId);
     },
 
-    [updateVisibleGrid, updateDonut],
+    [updateVisibleGrid, updateGame],
   );
 
   const handleDragMove = useCallback(

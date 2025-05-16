@@ -21,7 +21,7 @@ export default function Game() {
   const { moveToTrashCan } = useTrashAction();
   const { serveOrder } = useCustomerAction();
 
-  const updateDonut = (currentId: string, targetId: string) => {
+  const updateGame = (currentId: string, targetId: string) => {
     switch (targetId.replace(/\-\d+/g, "")) {
       case "table":
         if (currentId === "dough") updateDough({ isOnTable: true });
@@ -71,5 +71,5 @@ export default function Game() {
     }
   };
 
-  return { updateVisibleGrid, updateDonut };
+  return { updateVisibleGrid, updateGame };
 }
