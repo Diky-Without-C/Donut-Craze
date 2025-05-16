@@ -32,10 +32,9 @@ export default function Customer() {
     <>
       <Character
         image={image}
-        name={character.name}
         className={`${isPoppingUp ? "translate-y-0" : "translate-y-[200%]"} transition-all`}
       />
-      <Dialog dialog={character.dialog} />
+      <Dialog name={character.name} dialog={character.dialog} />
     </>
   );
 }
