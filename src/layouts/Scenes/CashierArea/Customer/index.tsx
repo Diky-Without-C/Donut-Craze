@@ -9,8 +9,9 @@ export default function Customer() {
   const [image, setImage] = useState("");
   const [isPoppingUp, setIsPoppingUp] = useState(true);
 
+  const character = customers[0];
   const currentImage =
-    CharacterImages[customers[0]?.name as keyof typeof CharacterImages];
+    CharacterImages[character?.name as keyof typeof CharacterImages];
 
   useEffect(() => {
     if (image !== currentImage) {
@@ -25,15 +26,16 @@ export default function Customer() {
     }
   }, [currentImage]);
 
-  if (!customers[0]) return null;
+  if (!character) return null;
 
   return (
     <>
       <Character
         image={image}
+        name={character.name}
         className={`${isPoppingUp ? "translate-y-0" : "translate-y-[200%]"} transition-all`}
       />
-      <Dialog dialog={customers[0].dialog} />
+      <Dialog dialog={character.dialog} />
     </>
   );
 }
