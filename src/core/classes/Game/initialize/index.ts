@@ -22,16 +22,16 @@ import {
   initialTable,
   initialTopping,
 } from "@services/stores/toppingAreaStore";
-import useCustomersStore from "@services/stores/customersStore";
 
 import useLocalStorage from "@hooks/useLocalStorage";
 import initializeCustomers from "./initializeCustomers";
+import useGameStore from "@services/stores/gameStore";
 
 export default function useInitialize() {
   const [currentLevel] = useLocalStorage("donut-craze-level", 1);
+  const { game } = useGameStore();
 
   const stores = {
-    setCustomer: useCustomersStore().setCustomer,
     setCashierPackages: useCashierPackStore().setCashierPackages,
     setDough: useDoughStore().setDough,
     setShapedDough: useShapedDoughStore().setShapedDough,
@@ -58,8 +58,7 @@ export default function useInitialize() {
   };
 
   const init = () => {
-    stores.setCustomer(initializeCustomers(String(currentLevel)));
-
+    game.customers = initializeCustomers(String(currentLevel));
     stores.setCashierPackages(initialValues.setCashierPackages);
     stores.setDough(initialValues.setDough);
     stores.setShapedDough(initialValues.setShapedDough);
