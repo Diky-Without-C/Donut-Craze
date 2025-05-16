@@ -4,13 +4,20 @@ import Droppable from "@components/Droppable";
 import Package from "@components/Package";
 import Bin from "../Bin";
 import SubmitButton from "./submitButton";
+import { packingArea } from "@constant/Game/game-detail.json";
 
 export default function Table() {
   const { packageTable, setPackageTable } = usePackageTableStore();
-  const { setCashierPackages } = useCashierPackStore();
+  const { cashierPackages, setCashierPackages } = useCashierPackStore();
 
   const handleSubmit = () => {
-    if (packageTable[0].donuts.some((donut) => donut)) {
+    const isHaveSomeDonut = packageTable[0].donuts.some((donut) => donut);
+    const isSpaceAvailable =
+      cashierPackages
+        .map((pack) => pack.size.width)
+        .reduce((acc, size) => acc + size, 0) < packingArea.maxPackingSlots;
+
+    if (isHaveSomeDonut && isSpaceAvailable) {
       setCashierPackages((self) => [...self, packageTable[0]]);
       setPackageTable(() => []);
     }

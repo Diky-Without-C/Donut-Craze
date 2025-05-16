@@ -34,5 +34,8 @@
   },
   "toppingArea": {
     "maxStockSlot": 6
+  },
+  "packingArea": {
+    "maxPackingSlots": 6
   }
 }

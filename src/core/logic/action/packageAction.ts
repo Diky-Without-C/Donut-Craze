@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import Packaging from "@core/classes/Packaging";
-import { PackagigType } from "@core/classes/Packaging/packaging.type";
+import { PackagingType } from "@core/classes/Packaging";
 import {
   useConveyorStore,
   usePackageTableStore,
@@ -18,7 +18,9 @@ export default function usePackageAction() {
     (currentId: string) => {
       if (packageTable[0] || !currentId.includes("package")) return;
 
-      const size = Number(currentId.replace(/\D/g, "")) as PackagigType["size"];
+      const size = Number(
+        currentId.replace(/\D/g, ""),
+      ) as PackagingType["size"];
       updatePackTable(0, new Packaging({ size }));
     },
     [updatePackTable, packageTable],
