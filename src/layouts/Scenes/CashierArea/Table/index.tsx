@@ -7,7 +7,7 @@ export default function Table() {
 
   return (
     <div className="flex h-2/6 w-full justify-center border-t-4 border-[#908887] bg-[#e7d7d5]">
-      <div className="relative -top-4 flex h-full w-3/6 gap-1">
+      <div className="relative -top-4 flex h-full w-3/6 translate-x-10 gap-1">
         {cashierPackages.map((pack) => {
           return <Package key={pack.id} pack={pack}></Package>;
         })}
