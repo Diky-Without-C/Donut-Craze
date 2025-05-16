@@ -16,9 +16,12 @@ export default function useCustomerAction() {
         currentId.includes(item.id),
       );
 
-      const isOrderCompleted = currentCustomer.checkOrders(
-        cashierPackages[index],
-      );
+      const selectedPackage = cashierPackages[index];
+      selectedPackage.donuts.forEach((donut) => {
+        if (donut) game.completedOrders.push(donut);
+      });
+
+      const isOrderCompleted = currentCustomer.checkOrders(selectedPackage);
 
       if (isOrderCompleted) {
         game.customers = game.customers.slice(1) || [];
