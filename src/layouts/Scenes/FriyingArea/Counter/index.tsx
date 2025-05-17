@@ -13,7 +13,7 @@ export default function Counter() {
 
   return (
     <div className="relative flex h-1/4 w-10/12 justify-between rounded-t-md border-4 border-table-border bg-table-primary p-2">
-      <div className="relative flex h-full w-32 cursor-pointer items-center justify-center p-3">
+      <div className="relative flex h-full w-32 items-center justify-center p-3">
         <Overlay src={DoughContainer} className="h-full w-full" />
 
         <div className="relative flex h-[7rem] w-[7rem] items-center justify-center pb-2">
@@ -24,7 +24,7 @@ export default function Counter() {
         <div className="relative flex h-full w-1/4 items-center justify-center">
           <Draggable
             id="roller"
-            className={`${dough.isFlattened && "rolling"} relative z-10 flex h-10 w-28 shrink-0 cursor-pointer items-center`}
+            className={`${dough.isFlattened && "rolling"} relative z-10 flex h-10 w-28 shrink-0 items-center`}
           >
             <Overlay src={RollerImage} />
           </Draggable>
@@ -32,7 +32,7 @@ export default function Counter() {
         <div className="flex h-full w-1/4 items-center justify-center">
           <Draggable
             id="mold"
-            className="relative z-10 size-24 shrink-0 cursor-pointer rounded-full"
+            className="relative z-10 size-24 shrink-0 rounded-full"
           >
             <Overlay src={MolderImage} className="h-full w-full" />
           </Draggable>
