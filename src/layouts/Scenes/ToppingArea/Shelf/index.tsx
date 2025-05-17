@@ -2,10 +2,12 @@ import Donut from "@components/Donut";
 import Droppable from "@components/Droppable";
 import { useStockStore } from "@services/stores/toppingAreaStore";
 import Overlay from "@components/Overlay";
-import { tableImages } from "@assets/toppingArea/config";
+import { useImageStore } from "@services/stores/assetsStore";
 
 export default function Shelf() {
   const { stock } = useStockStore();
+  const { images } = useImageStore();
+  const { tableImages } = images as { tableImages: { shelf: string } };
 
   return (
     <div className="relative h-3/5 w-2/12 border-b-4 border-l-4 border-table-border bg-table-primary pr-1">

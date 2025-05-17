@@ -2,12 +2,7 @@ import { ComponentProps } from "react";
 import Self from "@core/classes/Donut";
 import Draggable from "@components/Draggable";
 import Overlay from "@components/Overlay";
-import {
-  DonutImages,
-  GlazeImages,
-  IcingImages,
-  ToppingImages,
-} from "@assets/Donut/config";
+import { useImageStore } from "@services/stores/assetsStore";
 import {
   GLAZE_VARIANT,
   ICING_VARIANT,
@@ -29,23 +24,25 @@ export default function Donut({
   onDraggingEnd,
   ...props
 }: DonutProps) {
+  const { images } = useImageStore();
+  const { DonutImages, GlazeImages, IcingImages, ToppingImages } =
+    images as Record<string, Record<string, string>>;
+
   const { state } = donut.side;
   const isCooked = state !== "base";
 
-  const glazeId = GLAZE_VARIANT.find(
-    (variant) => variant.name === donut.glaze,
-  )?.id;
-  const glazeSrc = GlazeImages[glazeId as keyof typeof GlazeImages];
+  function getImageSrc(
+    variantList: { name: string; id: string }[],
+    selectedName: string | undefined,
+    imageMap: Record<string, string>,
+  ) {
+    const id = variantList.find((v) => v.name === selectedName)?.id;
+    return imageMap[id as keyof typeof imageMap];
+  }
 
-  const icingId = ICING_VARIANT.find(
-    (variant) => variant.name === donut.icing,
-  )?.id;
-  const icingSrc = IcingImages[icingId as keyof typeof IcingImages];
-
-  const toppingId = TOPPING_VARIANT.find(
-    (variant) => variant.name === donut.topping,
-  )?.id;
-  const toppingSrc = ToppingImages[toppingId as keyof typeof ToppingImages];
+  const glazeSrc = getImageSrc(GLAZE_VARIANT, donut.glaze, GlazeImages);
+  const icingSrc = getImageSrc(ICING_VARIANT, donut.icing, IcingImages);
+  const toppingSrc = getImageSrc(TOPPING_VARIANT, donut.topping, ToppingImages);
 
   return (
     <Draggable

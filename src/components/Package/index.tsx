@@ -3,7 +3,7 @@ import Donut from "@components/Donut";
 import Packagig from "@core/classes/Packaging";
 import Droppable from "@components/Droppable";
 import Overlay from "@components/Overlay";
-import { boxes } from "@assets/PackingArea/config";
+import { useImageStore } from "@services/stores/assetsStore";
 
 interface PackageProps {
   pack: Packagig;
@@ -13,6 +13,10 @@ interface PackageProps {
 export default function Package({ pack, isOpen = false }: PackageProps) {
   const { height, width } = pack.size;
   const size = isOpen ? 6.5 : 6;
+  const { images } = useImageStore();
+  const { boxes } = images as {
+    boxes: Record<string, { open: string; closed: string }>;
+  };
   const image = boxes[`box${width * height}` as keyof typeof boxes];
 
   return (

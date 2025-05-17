@@ -2,16 +2,17 @@ import { useRef } from "react";
 import { TOPPING_VARIANT } from "@constant/Donuts/donuts-detail.json";
 import { useSelectedTopping } from "@services/stores/toppingAreaStore";
 import Draggable from "@components/Draggable";
-import {
-  toppingImages,
-  toppingCrumpImages,
-  labelImages,
-} from "@assets/toppingArea/config";
 import Overlay from "@components/Overlay";
+import { useImageStore } from "@services/stores/assetsStore";
 
 export default function Topping() {
   const { selectedToppings, setSelectedToppings } = useSelectedTopping();
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const { images } = useImageStore();
+  const { toppingImages, toppingCrumpImages, labelImages } = images as Record<
+    string,
+    Record<string, string>
+  >;
 
   const clearSelection = () => {
     setSelectedToppings(Array(TOPPING_VARIANT.length).fill(false));

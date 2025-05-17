@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
-import { CharacterImages } from "@assets/Character/config";
 import Character from "./Character";
 import Dialog from "./Character/Dialog";
 import useGameStore from "@services/stores/gameStore";
+import { useImageStore } from "@services/stores/assetsStore";
 
 export default function Customer() {
   const [image, setImage] = useState("");
   const [isPoppingUp, setIsPoppingUp] = useState(true);
   const { game } = useGameStore();
+  const { images } = useImageStore();
+  const { CharacterImages } = images as {
+    CharacterImages: Record<string, string>;
+  };
 
   const character = game.customers[0];
   const currentImage =

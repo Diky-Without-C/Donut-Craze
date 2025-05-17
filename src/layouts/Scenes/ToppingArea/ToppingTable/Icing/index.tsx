@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { ICING_VARIANT } from "@constant/Donuts/donuts-detail.json";
 import Draggable from "@components/Draggable";
-import { icingImages } from "@assets/toppingArea/config";
 import Overlay from "@components/Overlay";
+import { useImageStore } from "@services/stores/assetsStore";
 
 export default function Icing() {
   const [selected, setSelected] = useState<number | null>(null);
+  const { images } = useImageStore();
+  const { icingImages } = images as { icingImages: Record<string, string> };
 
-    useEffect(() => {
+  useEffect(() => {
     const handleGlobalEnd = () => {
       if (selected !== null) {
         setSelected(null);

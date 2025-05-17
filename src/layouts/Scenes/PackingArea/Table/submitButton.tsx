@@ -1,11 +1,14 @@
-import { BellImages } from "@assets/PackingArea/config";
 import Overlay from "@components/Overlay";
+import { useImageStore } from "@services/stores/assetsStore";
 
 interface SubmitButtonProps {
   onClick?: () => void;
 }
 
 export default function SubmitButton({ onClick }: SubmitButtonProps) {
+  const { images } = useImageStore();
+  const { BellImages } = images as { BellImages: string };
+
   return (
     <div
       onClick={onClick}

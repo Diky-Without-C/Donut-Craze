@@ -1,15 +1,16 @@
 import { useDoughStore } from "@services/stores/fryingAreaStore";
 import Draggable from "@components/Draggable";
 import Dough from "../Table/Dough";
-import {
-  DoughContainer,
-  MolderImage,
-  RollerImage,
-} from "@assets/FryingArea/config";
 import Overlay from "@components/Overlay";
+import { useImageStore } from "@services/stores/assetsStore";
 
 export default function Counter() {
   const { dough } = useDoughStore();
+  const { images } = useImageStore();
+  const { DoughContainer, RollerImage, MolderImage } = images as Record<
+    string,
+    string
+  >;
 
   return (
     <div className="relative flex h-1/4 w-10/12 justify-between rounded-t-md border-4 border-table-border bg-table-primary p-2">

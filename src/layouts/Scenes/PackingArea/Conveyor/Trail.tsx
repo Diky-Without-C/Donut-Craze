@@ -1,8 +1,10 @@
 import { useRef, useEffect } from "react";
-import { ConveyorImages } from "@assets/PackingArea/config";
+import { useImageStore } from "@services/stores/assetsStore";
 
 export default function ConveyorTrail() {
   const trailRef = useRef<HTMLDivElement>(null);
+  const { images } = useImageStore();
+  const { ConveyorImages } = images as { ConveyorImages: { trail: string } };
 
   useEffect(() => {
     let animationFrameId: number;

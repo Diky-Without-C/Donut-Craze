@@ -1,10 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Home from "@layouts/Home";
 import Scene from "@layouts/Scenes";
+import LoadingScreen from "@layouts/Loading";
 import useGameStore from "@services/stores/gameStore";
 import useInitialize from "@core/classes/Game/initialize";
 
 export default function App() {
+  const [isLoading, setIsLoading] = useState(true);
   const { game } = useGameStore();
   const { init } = useInitialize();
 
@@ -13,6 +15,8 @@ export default function App() {
       init();
     }
   }, [game.isStart]);
+
+  if (isLoading) return <LoadingScreen onFinish={() => setIsLoading(false)} />;
 
   return (
     <main className="flex h-screen w-full items-center justify-center">

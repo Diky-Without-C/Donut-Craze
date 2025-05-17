@@ -3,8 +3,8 @@ import { useConveyorStore } from "@services/stores/packingAreaStore";
 import Droppable from "@components/Droppable";
 import Donut from "@components/Donut";
 import Overlay from "@components/Overlay";
-import { ConveyorImages } from "@assets/PackingArea/config";
 import ConveyorTrail from "./Trail";
+import { useImageStore } from "@services/stores/assetsStore";
 
 export default function Conveyor() {
   const { conveyor } = useConveyorStore();
@@ -17,6 +17,9 @@ export default function Conveyor() {
   const [positions, setPositions] = useState<number[]>(
     Array(conveyor.length).fill(0),
   );
+
+  const { images } = useImageStore();
+  const { ConveyorImages } = images as { ConveyorImages: { outline: string } };
 
   const updateConveyorState = (index: number, isHold: boolean) => {
     setConveyorStates((self) =>

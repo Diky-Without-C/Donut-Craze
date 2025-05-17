@@ -3,14 +3,16 @@ import { DOUGH } from "@constant/Donuts/donuts-detail.json";
 import { useStoveStore } from "@services/stores/fryingAreaStore";
 import Droppable from "@components/Droppable";
 import Donut from "@components/Donut";
-import { StoveImage } from "@assets/FryingArea/config";
 import Overlay from "@components/Overlay";
+import { useImageStore } from "@services/stores/assetsStore";
 
 export default function Stove() {
   const { stoveSlot } = useStoveStore();
   const [fryingStates, setFryingStates] = useState<boolean[]>(
     Array(stoveSlot.length).fill(true),
   );
+  const { images } = useImageStore();
+  const { StoveImage } = images as { StoveImage: string };
 
   const timeRef = useRef(0);
   const [time, setTime] = useState(0);

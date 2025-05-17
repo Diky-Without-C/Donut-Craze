@@ -1,13 +1,15 @@
 import { useState, useRef, useEffect } from "react";
 import Overlay from "@components/Overlay";
-import { TicketImage } from "@assets/toppingArea/config";
 import { level } from "@constant/Game/level-data.json";
 import useLocalStorage from "@hooks/useLocalStorage";
 import useGameStore from "@services/stores/gameStore";
+import { useImageStore } from "@services/stores/assetsStore";
 
 export default function Ticket() {
   const [isActive, setIsActive] = useState(false);
   const { game } = useGameStore();
+  const { images } = useImageStore();
+  const { TicketImage } = images as { TicketImage: string };
 
   const [currentLevel] = useLocalStorage("donut-craze-level", 1);
   const order =

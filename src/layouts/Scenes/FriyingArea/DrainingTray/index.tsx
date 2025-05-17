@@ -2,10 +2,12 @@ import { useDrainingStore } from "@services/stores/fryingAreaStore";
 import Droppable from "@components/Droppable";
 import Donut from "@components/Donut";
 import Overlay from "@components/Overlay";
-import { DrainingTrayImage } from "@assets/FryingArea/config";
+import { useImageStore } from "@services/stores/assetsStore";
 
 export default function DrainingTray() {
   const { drainingTray } = useDrainingStore();
+  const { images } = useImageStore();
+  const { DrainingTrayImage } = images as { DrainingTrayImage: string };
 
   return (
     <div className="relative flex h-2/5 w-11/12 items-center justify-center">
