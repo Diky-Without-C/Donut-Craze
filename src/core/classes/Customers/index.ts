@@ -66,9 +66,6 @@ export default class Customer {
     const isEveryElementInArray = (main: string[], sub: string[]) =>
       sub.every((element) => main.includes(element));
 
-    console.log(orderWithoutId, stackWithoutId);
-    console.log(isEveryElementInArray(orderWithoutId, stackWithoutId));
-
     return {
       isOrderCorrect: isEveryElementInArray(orderWithoutId, stackWithoutId),
       isOrderAmountCorrect: validStack.length === this.orders.length,
