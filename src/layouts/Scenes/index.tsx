@@ -36,6 +36,25 @@ export default function Scene() {
     scrollVertical();
   }, [isOnPantry]);
 
+  useEffect(() => {
+    const pantry = pantryAreaRef.current;
+
+    if (!pantry) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      if (isOnPantry && e.deltaY !== 0) {
+        e.preventDefault();
+        pantry.scrollLeft += e.deltaY;
+      }
+    };
+
+    pantry.addEventListener("wheel", handleWheel, { passive: false });
+
+    return () => {
+      pantry.removeEventListener("wheel", handleWheel);
+    };
+  }, [isOnPantry]);
+
   return (
     <DndContext onDragEnd={handleDragEnd} onDragMove={handleDragMove}>
       <section
