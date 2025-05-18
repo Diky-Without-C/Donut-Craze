@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useImageStore } from "@services/stores/assetsStore";
 import { flattenImageMap, unflattenImageMap } from "@utils/flattingNestedImage";
 import * as imageList from "@assets/config";
+import Loader from "./loader";
 
 interface LoadingScreenProps {
   onFinish: () => void;
@@ -30,5 +31,9 @@ export default function LoadingScreen({ onFinish }: LoadingScreenProps) {
     });
   }, []);
 
-  return <div>loading ...</div>;
+  return (
+    <section className="flex h-screen w-full items-center justify-center bg-slate-200">
+      <Loader />
+    </section>
+  );
 }
