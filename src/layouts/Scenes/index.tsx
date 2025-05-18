@@ -1,58 +1,54 @@
 import { useEffect, useRef, useState } from "react";
 import { DndContext } from "@dnd-kit/core";
 import useDragHandlers from "@hooks/useDragHandlers";
+import Button from "@components/Button";
 import CashierArea from "./CashierArea";
 import FriyingArea from "./FriyingArea";
 import PackingArea from "./PackingArea";
 import ToppingArea from "./ToppingArea";
-import Arrow from "@components/Arrow";
+import Transition from "./transition";
 
 export default function Scene() {
   const [isOnPantry, setIsOnPantry] = useState(false);
-  const { handleDragEnd, handleDragMove } = useDragHandlers();
+  const [shouldShowPantry, setShouldShowPantry] = useState(false);
+  const [transitionKey, setTransitionKey] = useState(0);
 
-  const pantryAreaRef = useRef<HTMLDivElement | null>(null);
+  const pantryRef = useRef<HTMLDivElement | null>(null);
   const sceneRef = useRef<HTMLDivElement | null>(null);
 
+  const { handleDragEnd, handleDragMove } = useDragHandlers();
+
+  const togglePantryView = () => {
+    setIsOnPantry((prev) => !prev);
+    setTransitionKey((prev) => prev + 1);
+
+    const timeout = setTimeout(() => {
+      setShouldShowPantry(!isOnPantry);
+    }, 600);
+
+    return () => clearTimeout(timeout);
+  };
+
   useEffect(() => {
-    const scrollToMiddle = () => {
-      if (pantryAreaRef.current) {
-        const middlePosition = pantryAreaRef.current.scrollWidth / 3;
-        pantryAreaRef.current.scrollLeft = middlePosition;
-      }
-    };
-    if (isOnPantry) scrollToMiddle();
-
-    const scrollVertical = () => {
-      if (sceneRef.current) {
-        const targetScroll = isOnPantry ? sceneRef.current.scrollHeight : 0;
-
-        sceneRef.current.scrollTo({
-          top: targetScroll,
-          behavior: "smooth",
-        });
-      }
-    };
-    scrollVertical();
+    if (isOnPantry && pantryRef.current) {
+      const middle = pantryRef.current.scrollWidth / 3;
+      pantryRef.current.scrollLeft = middle;
+    }
   }, [isOnPantry]);
 
   useEffect(() => {
-    const pantry = pantryAreaRef.current;
-
+    const pantry = pantryRef.current;
     if (!pantry) return;
 
-    const handleWheel = (e: WheelEvent) => {
+    const onWheel = (e: WheelEvent) => {
       if (isOnPantry && e.deltaY !== 0) {
         e.preventDefault();
         pantry.scrollLeft += e.deltaY;
       }
     };
 
-    pantry.addEventListener("wheel", handleWheel, { passive: false });
-
-    return () => {
-      pantry.removeEventListener("wheel", handleWheel);
-    };
+    pantry.addEventListener("wheel", onWheel, { passive: false });
+    return () => pantry.removeEventListener("wheel", onWheel);
   }, [isOnPantry]);
 
   return (
@@ -61,12 +57,17 @@ export default function Scene() {
         ref={sceneRef}
         className="relative h-[calc(100%-4rem)] w-full overflow-hidden"
       >
-        <section className="relative h-full w-full">
+        {transitionKey > 0 && <Transition key={transitionKey} />}
+
+        <section
+          className={`${shouldShowPantry ? "hidden" : "block"} relative h-full w-full`}
+        >
           <CashierArea />
         </section>
+
         <section
-          ref={pantryAreaRef}
-          className="scrollbar relative flex h-full w-full overflow-x-auto"
+          ref={pantryRef}
+          className="scrollbar relative h-full w-full overflow-x-auto"
         >
           <section className="ceramic-pattern absolute flex min-h-full w-[300%] overflow-hidden">
             <FriyingArea />
@@ -76,10 +77,7 @@ export default function Scene() {
         </section>
       </section>
 
-      <Arrow
-        onClick={() => setIsOnPantry((prev) => !prev)}
-        direction={isOnPantry ? "top" : "bottom"}
-      ></Arrow>
+      <Button onClick={togglePantryView} />
     </DndContext>
   );
 }
