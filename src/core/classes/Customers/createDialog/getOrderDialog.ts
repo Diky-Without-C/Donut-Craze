@@ -24,14 +24,14 @@ export default function getOrderDialog(self: Customer) {
       groupedOrders.length > 1;
 
     if (showIntro) {
-      description.push(`${totalOrders} donat.`);
+      description.push(`${numberToText(totalOrders)} donat.`);
     }
 
     if (isHalfPortion) {
       const isEven = totalOrders % 2 === 0;
       description.push(
         index === 0
-          ? `${totalOrders} donat, ${isEven ? "setengah" : ""}`
+          ? `${numberToText(totalOrders)} donat, ${isEven ? "setengah" : ""}`
           : isEven
             ? "setengahnya lagi"
             : "sisanya",
@@ -40,7 +40,6 @@ export default function getOrderDialog(self: Customer) {
       description.push(numberToText(count));
     }
 
-    // Donut type
     if (glaze) {
       description.push(`donat ${glaze}`);
       if (!topping && !icing && chance(1 / 4)) {
@@ -57,6 +56,10 @@ export default function getOrderDialog(self: Customer) {
       description.push(`dengan ${topping}`);
     } else if (icing) {
       description.push(`dengan ${icing}`);
+    }
+
+    if (count && count === 1) {
+      description.push("satu");
     }
 
     return description.join(" ");
