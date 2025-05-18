@@ -6,7 +6,7 @@ import CashierArea from "./CashierArea";
 import FriyingArea from "./FriyingArea";
 import PackingArea from "./PackingArea";
 import ToppingArea from "./ToppingArea";
-import Transition from "./transition";
+import Transition from "./Transition";
 
 export default function Scene() {
   const [isOnPantry, setIsOnPantry] = useState(false);
