@@ -23,12 +23,15 @@ export default function Customer() {
 
       const timeout = setTimeout(() => {
         setImage(currentImage);
-        setIsPoppingUp(true);
-      }, 500);
+      }, 1000);
 
       return () => clearTimeout(timeout);
     }
-  }, [currentImage]);
+
+    if (image === currentImage) {
+      setIsPoppingUp(true);
+    }
+  }, [currentImage, image]);
 
   if (!character) return null;
 
