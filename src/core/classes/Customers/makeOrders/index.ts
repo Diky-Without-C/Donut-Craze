@@ -8,7 +8,10 @@ import getRandomValue from "@utils/getRandomValue";
 import shuffle from "@utils/shuffle";
 import chance from "@utils/createProbability";
 import Donut from "@core/classes/Donut";
+import canUseFavoriteOrders from "./checkAvailableFav";
+import getRandomVariant from "./getRandomVariant";
 import Customer from "..";
+import sortOrders from "./sortOrders";
 
 export default function makeOrders(self: Customer) {
   const { qty, allowedOrders, maxVariant } = difficulty[self.difficulty];
@@ -16,10 +19,13 @@ export default function makeOrders(self: Customer) {
   const ordersPerVariant = Math.ceil(totalOrders / maxVariant);
   const orders: Donut[] = [];
 
-  const getRandomVariant = (
-    allowed: boolean,
-    variants: { name: string; price: number }[],
-  ) => (allowed ? getRandomValue(variants)?.name : undefined);
+  if (chance(3 / 5)) {
+    const favoriteAreValid =
+      canUseFavoriteOrders(self.favorite, allowedOrders, maxVariant) &&
+      self.favorite.length === totalOrders;
+
+    if (favoriteAreValid) return self.favorite.map((order) => new Donut(order));
+  }
 
   for (let i = 0; i < maxVariant; i++) {
     const allowedOrder = getRandomValue(allowedOrders);
@@ -33,19 +39,5 @@ export default function makeOrders(self: Customer) {
     }
   }
 
-  if (chance(1 / 2)) {
-    if (self.favorite.length === totalOrders)
-      return self.favorite.map((order) => new Donut(order));
-  }
-
-  const getSortWeight = (donut: Donut) => {
-    const glazeWeight = donut.glaze ? 1 : 0;
-    const icingWeight = donut.icing ? 2 : 0;
-    const toppingWeight = donut.topping ? 4 : 0;
-    return glazeWeight + icingWeight + toppingWeight;
-  };
-
-  return shuffle(orders)
-    .slice(0, totalOrders)
-    .sort((a, b) => getSortWeight(a) - getSortWeight(b));
+  return sortOrders(shuffle(orders).slice(0, totalOrders));
 }
