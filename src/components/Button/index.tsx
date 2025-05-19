@@ -11,7 +11,7 @@ export default function Button({ className, ...props }: ButtonProps) {
   return (
     <button
       {...props}
-      className={`${className} absolute bottom-0 right-0 z-[9999] flex size-20 -translate-x-12 -translate-y-16 items-center justify-center rounded-full border-2 border-gray-900 bg-emerald-400/80 px-2`}
+      className={`${className} absolute bottom-0 right-0 z-[9999] flex size-20 -translate-x-12 -translate-y-16 items-center justify-center rounded-full border-2 border-red-800 bg-red-900 px-2`}
     >
       <Overlay src={MolderImage} className="p-2"></Overlay>
     </button>
