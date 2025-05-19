@@ -5,6 +5,7 @@ import Droppable from "@components/Droppable";
 import Donut from "@components/Donut";
 import Overlay from "@components/Overlay";
 import { useImageStore } from "@services/stores/assetsStore";
+import Bubble from "./Bubble";
 
 export default function Stove() {
   const { stoveSlot } = useStoveStore();
@@ -68,6 +69,7 @@ export default function Stove() {
 
       <div className="relative flex h-3/4 w-full justify-center p-5">
         <div className="relative top-5 flex h-full w-full flex-wrap gap-y-2">
+          <Bubble></Bubble>
           {stoveSlot.map((donut, index) => {
             const isFrying = fryingStates[index];
 
