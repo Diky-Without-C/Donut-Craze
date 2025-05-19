@@ -163,7 +163,7 @@ class Bubble {
     return Bubble.random(20, 70) / 100;
   }
 
-  static getPos(width: number, height: number, size: number): Position {
+  static getPos(width: number, _height: number, size: number): Position {
     return { x: Bubble.random(0, width), y: size * 2 };
   }
 
