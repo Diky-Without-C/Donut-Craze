@@ -1,3 +1,8 @@
+:root {
+  --ceramic-color: #e57373;
+  --ceramic-color-light: #ffffff;
+}
+
 .rolling {
   animation: rolling 2s ease-in-out;
   position: absolute;
@@ -48,10 +53,11 @@
 }
 
 .ceramic-pattern {
-  background-color: #fcfff9;
+  background-color: var(--ceramic-color-light);
   opacity: 0.8;
-  background-image:  linear-gradient(#cbcbd5 3.3000000000000003px, transparent 3.3000000000000003px), linear-gradient(to right, #cbcbd5 3.3000000000000003px, #fcfff9 3.3000000000000003px);
-  background-size: 66px 66px;
+  background-image:  repeating-linear-gradient(45deg, var(--ceramic-color) 25%, transparent 25%, transparent 75%, var(--ceramic-color) 75%, var(--ceramic-color)), repeating-linear-gradient(45deg, var(--ceramic-color) 25%, var(--ceramic-color-light) 25%, var(--ceramic-color-light) 75%, var(--ceramic-color) 75%, var(--ceramic-color));
+  background-position: 0 0, 60px 60px;
+  background-size: 120px 120px;
 }
 
 .loader-bite-1 {
