@@ -9,7 +9,7 @@ export default function Container() {
           <div className="absolute right-0 h-16 w-[calc(100%-0.5rem)] translate-y-4 rounded-bl-lg bg-gray-400"></div>
         </div>
 
-        <div className="relative flex h-full flex-wrap items-center gap-x-2 px-1">
+        <div className="relative -top-4 flex h-full flex-wrap items-center gap-x-2 gap-y-1 px-1">
           <Package pack={new Packaging({ size: 3 })} />
           <Package pack={new Packaging({ size: 1 })} />
           <Package pack={new Packaging({ size: 6 })} />
